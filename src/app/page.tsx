@@ -37,7 +37,7 @@ export default async function HomePage() {
     getServices(), getSectors(), getArticles(), getProofs(), getStats(),
   ]);
   const videoUrls     = getHeroVideoUrls();
-  const agentPhotoUrl = await getAgentPhotoUrl();
+  const agentPhotoUrl = getAgentPhotoUrl();
 
   return (
     <>
