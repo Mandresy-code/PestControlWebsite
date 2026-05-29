@@ -36,8 +36,8 @@ export default async function HomePage() {
   const [services, sectors, articles, proofs, stats] = await Promise.all([
     getServices(), getSectors(), getArticles(), getProofs(), getStats(),
   ]);
-  const videoUrls    = getHeroVideoUrls();
-  const agentPhotoUrl = getAgentPhotoUrl();
+  const videoUrls     = getHeroVideoUrls();
+  const agentPhotoUrl = await getAgentPhotoUrl();
 
   return (
     <>

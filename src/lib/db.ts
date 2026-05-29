@@ -251,10 +251,12 @@ export async function getProofs(): Promise<Proof[]> {
 // ─── Agent photo (Supabase Storage) ──────────────────────────────────────────
 // Upload dans : bucket "media" → dossier "team/" → fichier "agent.jpg"
 
-export function getAgentPhotoUrl(): string | null {
+export async function getAgentPhotoUrl(): Promise<string | null> {
   if (!supabaseConfigured || !supabase) return null;
-  const { data } = supabase.storage.from("media").getPublicUrl("team/agent.jpg");
-  return data.publicUrl || null;
+  const { data } = await supabase.storage.from("media").list("team", { search: "agent.jpg" });
+  if (!data?.find((f) => f.name === "agent.jpg")) return null;
+  const { data: url } = supabase.storage.from("media").getPublicUrl("team/agent.jpg");
+  return url.publicUrl || null;
 }
 
 // ─── Hero video (Supabase Storage) ────────────────────────────────────────────
