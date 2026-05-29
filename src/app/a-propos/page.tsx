@@ -41,7 +41,7 @@ export default function AProposPage() {
       <section className="bg-cream section-padding">
         <div className="container-site grid md:grid-cols-2 gap-72 items-start">
           <div>
-            <SectionHead eyebrow="Mission" title="L'hygiène, sans bruit." className="mb-32" />
+            <SectionHead eyebrow="Mission" title="L'excellence en matière de nuisibles." className="mb-32" />
             <div className="prose-eseis space-y-20">
               <p>
                 ESEIS Pest Control est né d&apos;un constat simple : le marché de la lutte antiparasitaire

@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import Arc from "@/components/ui/Arc";
-import { contact, services, certifications } from "@/lib/content";
+import { contact, certifications } from "@/lib/content";
 
 const serviceLinks = [
   { label: "Dératisation",    href: "/services/deratisation" },
@@ -41,7 +41,7 @@ export default function Footer() {
             <span className="text-signal-500">Pest Control</span>
           </div>
           <p className="text-body-lg text-navy-300 italic max-w-[28ch] leading-relaxed">
-            «&nbsp;L&apos;hygiène, sans bruit.&nbsp;»
+            «&nbsp;L&apos;excellence en matière de nuisibles.&nbsp;»
           </p>
           <p className="mt-8 text-body text-navy-500 max-w-[40ch]">
             Groupe BCR-i — «&nbsp;Faire grandir les hommes, faire grandir les entreprises.&nbsp;»
@@ -96,15 +96,6 @@ export default function Footer() {
             <ul className="flex flex-col gap-16">
               <li>
                 <a
-                  href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                  className="flex items-start gap-10 text-body text-navy-300 hover:text-white transition-colors duration-micro"
-                >
-                  <Phone size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-signal-500" />
-                  <span className="font-mono">{contact.phone}</span>
-                </a>
-              </li>
-              <li>
-                <a
                   href={`mailto:${contact.email}`}
                   className="flex items-start gap-10 text-body text-navy-300 hover:text-white transition-colors duration-micro"
                 >
@@ -134,7 +125,6 @@ export default function Footer() {
             </ul>
             <div className="mt-24">
               <p className="text-sm text-navy-500">{contact.hours}</p>
-              <p className="text-sm text-navy-500 mt-4">Astreinte&nbsp;: {contact.emergencyPhone}</p>
             </div>
           </div>
         </div>

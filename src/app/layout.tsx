@@ -8,7 +8,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://eseis-pestcontrol.fr"),
   title: {
-    default: "ESEIS Pest Control — L'hygiène, sans bruit.",
+    default: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
     template: "%s | ESEIS Pest Control",
   },
   description:
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://eseis-pestcontrol.fr",
     siteName: "ESEIS Pest Control",
-    title: "ESEIS Pest Control — L'hygiène, sans bruit.",
+    title: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
     description:
       "Lutte antiparasitaire professionnelle. IPM · Certibiocide · Astreinte 24/7.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ESEIS Pest Control — L'hygiène, sans bruit.",
+    title: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
     description: "Lutte antiparasitaire professionnelle. IPM · Certibiocide · Astreinte 24/7.",
   },
   robots: {

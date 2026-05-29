@@ -22,12 +22,11 @@ const jsonLd = {
   description: "Société de lutte antiparasitaire professionnelle — groupe BCR-i.",
   url: "https://eseis-pestcontrol.fr",
   email: "contact@eseis-pestcontrol.fr",
-  telephone: "+33 1 XX XX XX XX",
   areaServed: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
 };
 
 export const metadata: Metadata = {
-  title: "ESEIS Pest Control — L'hygiène, sans bruit.",
+  title: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
   description:
     "Lutte antiparasitaire professionnelle pour entreprises et particuliers. Dératisation, désinsectisation, punaises de lit, désinfection. Certibiocide. Astreinte 24/7.",
 };

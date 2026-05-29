@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Clock, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { Field, TextareaField } from "@/components/ui/Field";
 import { contact } from "@/lib/content";
@@ -43,10 +43,7 @@ export default function ContactPage() {
               <div className="p-32 rounded-lg bg-signal-500/10 border border-signal-500/20">
                 <p className="text-body font-medium text-navy-900 mb-8">Message reçu.</p>
                 <p className="text-body text-navy-600">
-                  Nous vous rappelons sous 48 h ouvrées. Pour une urgence, appelez le{" "}
-                  <a href={`tel:${contact.emergencyPhone}`} className="font-mono font-medium text-navy-900">
-                    {contact.emergencyPhone}
-                  </a>.
+                  Nous vous rappelons sous 48 h ouvrées. Pour une urgence, utilisez le formulaire ci-dessous.
                 </p>
               </div>
             ) : (
@@ -102,13 +99,9 @@ export default function ContactPage() {
               <p className="text-body text-navy-200 mb-20">
                 Nid de frelons, infestation soudaine avant inspection : notre astreinte répond 7j/7.
               </p>
-              <a
-                href={`tel:${contact.emergencyPhone.replace(/\s/g, "")}`}
-                className="inline-flex items-center gap-10 font-mono text-body font-medium text-white hover:text-signal-300 transition-colors duration-micro"
-              >
-                <Phone size={16} strokeWidth={1.5} />
-                {contact.emergencyPhone}
-              </a>
+              <p className="text-body font-medium text-white">
+                Contactez-nous via le formulaire ou par email.
+              </p>
               <p className="text-sm text-navy-400 mt-8">{contact.hours}</p>
             </div>
 

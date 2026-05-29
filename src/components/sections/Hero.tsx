@@ -24,7 +24,7 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-end bg-navy-950 overflow-hidden"
-      aria-label="Hero — L'hygiène, sans bruit."
+      aria-label="Hero — L'excellence en matière de nuisibles."
     >
       {/* Fond — vidéo ou placeholder */}
       <div className="absolute inset-0 z-0">
@@ -80,7 +80,7 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
         </div>
 
         <h1 className="text-display font-medium text-white tracking-tight max-w-[18ch] mb-24">
-          L&apos;hygiène,<br />sans bruit.
+          L&apos;excellence<br />en matière de nuisibles.
         </h1>
 
         <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed mb-40">

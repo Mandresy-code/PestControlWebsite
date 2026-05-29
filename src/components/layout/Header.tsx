@@ -2,9 +2,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { contact } from "@/lib/content";
 import Button from "@/components/ui/Button";
 
 const nav = [
@@ -79,13 +78,6 @@ export default function Header() {
 
         {/* Right actions */}
         <div className="hidden md:flex items-center gap-16 ml-auto">
-          <a
-            href={`tel:${contact.phone.replace(/\s/g, "")}`}
-            className="inline-flex items-center gap-8 font-mono text-mono text-navy-600 hover:text-navy-900 transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
-          >
-            <Phone size={16} strokeWidth={1.5} />
-            {contact.phone}
-          </a>
           <Link
             href="/espace-client"
             className="text-body text-navy-600 hover:text-navy-900 transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm px-4"
@@ -133,13 +125,6 @@ export default function Header() {
             );
           })}
           <div className="pt-16 flex flex-col gap-12 border-t border-navy-900/8">
-            <a
-              href={`tel:${contact.phone.replace(/\s/g, "")}`}
-              className="flex items-center gap-8 font-mono text-mono text-navy-600 px-12"
-            >
-              <Phone size={16} strokeWidth={1.5} />
-              {contact.phone}
-            </a>
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
             </Link>

@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
-import { contact } from "@/lib/content";
 
 export default function FinalCTA() {
   return (
@@ -37,13 +36,6 @@ export default function FinalCTA() {
             </Button>
           </Link>
         </div>
-        <a
-          href={`tel:${contact.emergencyPhone.replace(/\s/g, "")}`}
-          className="inline-flex items-center gap-10 font-mono text-mono text-navy-300 hover:text-white transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
-        >
-          <Phone size={16} strokeWidth={1.5} />
-          Urgence : {contact.emergencyPhone} — 24h/24
-        </a>
       </div>
     </section>
   );
