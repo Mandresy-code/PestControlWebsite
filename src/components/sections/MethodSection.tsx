@@ -8,7 +8,11 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?:
   Search, ClipboardList, Wrench, BarChart3,
 };
 
-export default function MethodSection() {
+interface MethodSectionProps {
+  photoUrl?: string | null;
+}
+
+export default function MethodSection({ photoUrl }: MethodSectionProps) {
   return (
     <section className="bg-paper section-padding" aria-labelledby="method-title">
       <div className="container-site">
@@ -49,18 +53,27 @@ export default function MethodSection() {
           {/* Photo agent au travail */}
           <div className="relative">
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-navy-100">
-              {/* Placeholder — le client fournira la photo d'un agent ESEIS */}
-              <div className="absolute inset-0 bg-gradient-to-br from-navy-200 to-navy-300 flex flex-col items-center justify-center gap-12 text-center p-32">
-                <div className="w-16 h-16 rounded-full bg-navy-400/30 flex items-center justify-center">
-                  <Wrench size={32} strokeWidth={1} className="text-navy-500" />
+              {photoUrl ? (
+                <Image
+                  src={photoUrl}
+                  alt="Technicien ESEIS en intervention"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 980px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-navy-200 to-navy-300 flex flex-col items-center justify-center gap-12 text-center p-32">
+                  <div className="w-16 h-16 rounded-full bg-navy-400/30 flex items-center justify-center">
+                    <Wrench size={32} strokeWidth={1} className="text-navy-500" />
+                  </div>
+                  <p className="font-mono text-mono text-navy-400 uppercase tracking-widest">
+                    Photo agent — à uploader
+                  </p>
+                  <p className="text-sm text-navy-400 max-w-[24ch]">
+                    Supabase Storage → media/team/agent.jpg
+                  </p>
                 </div>
-                <p className="font-mono text-mono text-navy-400 uppercase tracking-widest">
-                  Photo agent — à fournir
-                </p>
-                <p className="text-sm text-navy-400 max-w-[24ch]">
-                  Le client fournira une photo d&apos;un technicien ESEIS en intervention.
-                </p>
-              </div>
+              )}
             </div>
             {/* Caption */}
             <div className="mt-20 pl-4 border-l-2 border-signal-500">

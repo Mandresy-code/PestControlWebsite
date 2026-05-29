@@ -248,6 +248,15 @@ export async function getProofs(): Promise<Proof[]> {
   return (data as Record<string, unknown>[]).map(mapProof);
 }
 
+// ─── Agent photo (Supabase Storage) ──────────────────────────────────────────
+// Upload dans : bucket "media" → dossier "team/" → fichier "agent.jpg"
+
+export function getAgentPhotoUrl(): string | null {
+  if (!supabaseConfigured || !supabase) return null;
+  const { data } = supabase.storage.from("media").getPublicUrl("team/agent.jpg");
+  return data.publicUrl || null;
+}
+
 // ─── Hero video (Supabase Storage) ────────────────────────────────────────────
 
 export function getHeroVideoUrls(): { mp4: string | null; webm: string | null } {

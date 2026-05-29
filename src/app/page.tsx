@@ -11,7 +11,8 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import SectionHead from "@/components/ui/SectionHead";
 import ServiceCard from "@/components/ui/ServiceCard";
 import {
-  getServices, getSectors, getArticles, getProofs, getStats, getHeroVideoUrls,
+  getServices, getSectors, getArticles, getProofs, getStats,
+  getHeroVideoUrls, getAgentPhotoUrl,
 } from "@/lib/db";
 import LucideIcon from "@/components/ui/LucideIcon";
 
@@ -32,14 +33,11 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [services, sectors, articles, proofs, stats, videoUrls] = await Promise.all([
-    getServices(),
-    getSectors(),
-    getArticles(),
-    getProofs(),
-    getStats(),
-    Promise.resolve(getHeroVideoUrls()),
+  const [services, sectors, articles, proofs, stats] = await Promise.all([
+    getServices(), getSectors(), getArticles(), getProofs(), getStats(),
   ]);
+  const videoUrls    = getHeroVideoUrls();
+  const agentPhotoUrl = getAgentPhotoUrl();
 
   return (
     <>
@@ -114,7 +112,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <MethodSection />
+      <MethodSection photoUrl={agentPhotoUrl} />
       <ProofsStats proofs={proofs} stats={stats} />
       <ArticlesGrid articles={articles.slice(0, 4)} />
       <FinalCTA />
