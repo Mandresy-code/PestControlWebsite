@@ -2,17 +2,19 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHead from "@/components/ui/SectionHead";
 import Chip from "@/components/ui/Chip";
-import { articles } from "@/lib/content";
+import type { Article } from "@/lib/content";
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
+    day: "numeric", month: "long", year: "numeric",
   });
 }
 
-export default function ArticlesGrid() {
+interface ArticlesGridProps {
+  articles: Article[];
+}
+
+export default function ArticlesGrid({ articles }: ArticlesGridProps) {
   return (
     <section className="bg-cream section-padding" aria-labelledby="articles-title">
       <div className="container-site">

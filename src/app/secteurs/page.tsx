@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import SectionHead from "@/components/ui/SectionHead";
 import FinalCTA from "@/components/sections/FinalCTA";
-import { sectors } from "@/lib/content";
+import { getSectors } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Secteurs d'activité",
-  description:
-    "Restauration, hôtellerie, industrie, santé, logistique et particuliers. Des protocoles de lutte antiparasitaire adaptés à chaque secteur.",
+  description: "Restauration, hôtellerie, industrie, santé, logistique et particuliers. Protocoles de lutte antiparasitaire adaptés à chaque secteur.",
 };
 
-export default function SecteursPage() {
+export default async function SecteursPage() {
+  const sectors = await getSectors();
+
   return (
     <>
       <div className="bg-navy-900 pt-[112px] pb-72">
@@ -40,21 +40,14 @@ export default function SecteursPage() {
                   <div className="w-12 h-12 rounded-md bg-navy-900/6 flex items-center justify-center">
                     <span className="w-5 h-5 rounded-full bg-signal-500/50" />
                   </div>
-                  <span
-                    className={`font-mono text-eyebrow uppercase tracking-widest px-10 py-4 rounded-pill ${
-                      sector.badge === "Particuliers"
-                        ? "bg-signal-500/15 text-navy-700"
-                        : "bg-navy-900/8 text-navy-500"
-                    }`}
-                  >
+                  <span className={`font-mono text-eyebrow uppercase tracking-widest px-10 py-4 rounded-pill ${sector.badge === "Particuliers" ? "bg-signal-500/15 text-navy-700" : "bg-navy-900/8 text-navy-500"}`}>
                     {sector.badge}
                   </span>
                 </div>
                 <h2 className="text-h3 font-medium text-navy-900">{sector.title}</h2>
                 <p className="text-body text-navy-600 leading-relaxed flex-1">{sector.description}</p>
                 <span className="inline-flex items-center gap-8 text-body font-medium text-navy-700 group-hover:text-navy-900 transition-colors duration-micro">
-                  Voir le secteur
-                  <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-micro group-hover:translate-x-1" />
+                  Voir le secteur <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-micro group-hover:translate-x-1" />
                 </span>
               </Link>
             ))}

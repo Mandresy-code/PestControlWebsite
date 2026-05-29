@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { articles } from "@/lib/content";
+import { getArticle, getArticleSlugs } from "@/lib/db";
 import Chip from "@/components/ui/Chip";
 import FinalCTA from "@/components/sections/FinalCTA";
 
 export async function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+  const slugs = await getArticleSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticle(slug);
   if (!article) return {};
   return { title: article.title, description: article.excerpt };
 }
@@ -23,7 +24,7 @@ export default async function ArticleDetailPage(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const article = articles.find((a) => a.slug === slug);
+  const article = await getArticle(slug);
   if (!article) notFound();
 
   const formatDate = (d: string) =>
@@ -37,11 +38,8 @@ export default async function ArticleDetailPage(
             href="/ressources"
             className="inline-flex items-center gap-8 text-navy-500 hover:text-navy-900 text-sm font-medium mb-32 transition-colors duration-micro focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
           >
-            <ArrowLeft size={14} strokeWidth={1.5} />
-            Toutes les ressources
+            <ArrowLeft size={14} strokeWidth={1.5} /> Toutes les ressources
           </Link>
-
-          {/* Header */}
           <div className="max-w-[680px]">
             <div className="flex items-center gap-16 mb-24">
               <Chip>{article.category}</Chip>
@@ -54,26 +52,31 @@ export default async function ArticleDetailPage(
         </div>
       </div>
 
-      {/* Article body */}
       <div className="bg-paper py-72">
         <div className="container-site">
           <div className="prose-eseis mx-auto">
-            <p>
-              Cet article est en cours de rédaction par nos techniciens. Le contenu final sera
-              livré avec les photos et données terrain issues des interventions ESEIS.
-            </p>
-            <h2>Pourquoi ce sujet nous tient à cœur</h2>
-            <p>
-              {article.excerpt} C&apos;est pourquoi nous avons souhaité dédier un guide complet à
-              ce sujet — pour que chaque professionnel ou particulier dispose des informations
-              nécessaires avant même de nous appeler.
-            </p>
-            <h2>Ce que vous devez retenir</h2>
-            <ul>
-              <li>Identifier le problème avant d&apos;agir est toujours la bonne première étape.</li>
-              <li>Le traitement doit être proportionné au niveau d&apos;infestation réel.</li>
-              <li>La documentation et la traçabilité protègent votre établissement.</li>
-            </ul>
+            {article.body ? (
+              <div dangerouslySetInnerHTML={{ __html: article.body }} />
+            ) : (
+              <>
+                <p>
+                  Cet article est en cours de rédaction par nos techniciens. Le contenu final sera
+                  livré avec les photos et données terrain issues des interventions ESEIS.
+                </p>
+                <h2>Pourquoi ce sujet nous tient à cœur</h2>
+                <p>
+                  {article.excerpt} C&apos;est pourquoi nous avons souhaité dédier un guide
+                  complet à ce sujet — pour que chaque professionnel ou particulier dispose des
+                  informations nécessaires avant même de nous appeler.
+                </p>
+                <h2>Ce que vous devez retenir</h2>
+                <ul>
+                  <li>Identifier le problème avant d&apos;agir est toujours la bonne première étape.</li>
+                  <li>Le traitement doit être proportionné au niveau d&apos;infestation réel.</li>
+                  <li>La documentation et la traçabilité protègent votre établissement.</li>
+                </ul>
+              </>
+            )}
           </div>
         </div>
       </div>

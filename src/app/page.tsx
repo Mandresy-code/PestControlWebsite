@@ -10,9 +10,10 @@ import ArticlesGrid from "@/components/sections/ArticlesGrid";
 import FinalCTA from "@/components/sections/FinalCTA";
 import SectionHead from "@/components/ui/SectionHead";
 import ServiceCard from "@/components/ui/ServiceCard";
-import { services, sectors } from "@/lib/content";
+import {
+  getServices, getSectors, getArticles, getProofs, getStats, getHeroVideoUrls,
+} from "@/lib/db";
 
-// JSON-LD LocalBusiness
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -22,10 +23,6 @@ const jsonLd = {
   email: "contact@eseis-pestcontrol.fr",
   telephone: "+33 1 XX XX XX XX",
   areaServed: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Services de lutte antiparasitaire",
-  },
 };
 
 export const metadata: Metadata = {
@@ -34,22 +31,27 @@ export const metadata: Metadata = {
     "Lutte antiparasitaire professionnelle pour entreprises et particuliers. Dératisation, désinsectisation, punaises de lit, désinfection. Certibiocide. Astreinte 24/7.",
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [services, sectors, articles, proofs, stats, videoUrls] = await Promise.all([
+    getServices(),
+    getSectors(),
+    getArticles(),
+    getProofs(),
+    getStats(),
+    Promise.resolve(getHeroVideoUrls()),
+  ]);
+
   return (
     <>
-      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 1. Hero */}
-      <Hero />
-
-      {/* 2. Bandeau urgence */}
+      <Hero videoMp4={videoUrls.mp4} videoWebm={videoUrls.webm} />
       <UrgencyBanner />
 
-      {/* 3. Services */}
+      {/* Services */}
       <section className="bg-cream section-padding" aria-labelledby="services-title">
         <div className="container-site">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-24 mb-56">
@@ -59,12 +61,8 @@ export default function HomePage() {
               description="Du rongeur au nuisible volant, du site industriel à la résidence : nos protocoles s'adaptent à votre contexte, pas l'inverse."
               id="services-title"
             />
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
-            >
-              Tous les services
-              <ArrowRight size={16} strokeWidth={1.5} />
+            <Link href="/services" className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm">
+              Tous les services <ArrowRight size={16} strokeWidth={1.5} />
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-24">
@@ -75,10 +73,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Sélecteur nuisible */}
       <PestSelector />
 
-      {/* 5. Secteurs */}
+      {/* Secteurs */}
       <section className="bg-cream section-padding" aria-labelledby="secteurs-title">
         <div className="container-site">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-24 mb-56">
@@ -87,12 +84,8 @@ export default function HomePage() {
               title="Votre activité a ses contraintes. Nos protocoles aussi."
               id="secteurs-title"
             />
-            <Link
-              href="/secteurs"
-              className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
-            >
-              Tous les secteurs
-              <ArrowRight size={16} strokeWidth={1.5} />
+            <Link href="/secteurs" className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm">
+              Tous les secteurs <ArrowRight size={16} strokeWidth={1.5} />
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-24">
@@ -106,21 +99,14 @@ export default function HomePage() {
                   <div className="w-12 h-12 rounded-md bg-navy-900/6 flex items-center justify-center">
                     <span className="w-5 h-5 rounded-full bg-signal-500/50" />
                   </div>
-                  <span
-                    className={`font-mono text-eyebrow uppercase tracking-widest px-10 py-4 rounded-pill ${
-                      sector.badge === "Particuliers"
-                        ? "bg-signal-500/15 text-navy-700"
-                        : "bg-navy-900/8 text-navy-500"
-                    }`}
-                  >
+                  <span className={`font-mono text-eyebrow uppercase tracking-widest px-10 py-4 rounded-pill ${sector.badge === "Particuliers" ? "bg-signal-500/15 text-navy-700" : "bg-navy-900/8 text-navy-500"}`}>
                     {sector.badge}
                   </span>
                 </div>
                 <h3 className="text-h3 font-medium text-navy-900">{sector.title}</h3>
                 <p className="text-body text-navy-600 leading-relaxed flex-1">{sector.description}</p>
                 <span className="inline-flex items-center gap-8 text-body font-medium text-navy-700 group-hover:text-navy-900 transition-colors duration-micro">
-                  En savoir plus
-                  <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-micro group-hover:translate-x-1" />
+                  En savoir plus <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-micro group-hover:translate-x-1" />
                 </span>
               </Link>
             ))}
@@ -128,16 +114,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. Méthode IPM */}
       <MethodSection />
-
-      {/* 7. Preuves & stats */}
-      <ProofsStats />
-
-      {/* 8. Ressources */}
-      <ArticlesGrid />
-
-      {/* 9. CTA final */}
+      <ProofsStats proofs={proofs} stats={stats} />
+      <ArticlesGrid articles={articles.slice(0, 4)} />
       <FinalCTA />
     </>
   );
