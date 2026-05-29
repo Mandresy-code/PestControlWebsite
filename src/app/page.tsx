@@ -13,6 +13,7 @@ import ServiceCard from "@/components/ui/ServiceCard";
 import {
   getServices, getSectors, getArticles, getProofs, getStats, getHeroVideoUrls,
 } from "@/lib/db";
+import LucideIcon from "@/components/ui/LucideIcon";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -96,8 +97,8 @@ export default async function HomePage() {
                 className="group flex flex-col gap-16 p-32 rounded-lg bg-paper border border-navy-900/8 shadow-1 hover:shadow-2 transition-shadow duration-standard ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55"
               >
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-md bg-navy-900/6 flex items-center justify-center">
-                    <span className="w-5 h-5 rounded-full bg-signal-500/50" />
+                  <div className="w-10 h-10 rounded-md bg-navy-900/6 flex items-center justify-center">
+                    <LucideIcon name={sector.icon} size={20} strokeWidth={1.5} className="text-navy-600" />
                   </div>
                   <span className={`font-mono text-eyebrow uppercase tracking-widest px-10 py-4 rounded-pill ${sector.badge === "Particuliers" ? "bg-signal-500/15 text-navy-700" : "bg-navy-900/8 text-navy-500"}`}>
                     {sector.badge}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Service } from "@/lib/content";
 import Chip from "./Chip";
+import LucideIcon from "./LucideIcon";
 import { cn } from "@/lib/utils";
 
 interface ServiceCardProps {
@@ -20,9 +21,9 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
       {/* Index */}
       <span className="font-mono text-mono text-navy-300 tabular-nums">{service.index}</span>
 
-      {/* Icon placeholder */}
-      <div className="w-12 h-12 rounded-md bg-navy-900/6 flex items-center justify-center shrink-0">
-        <span className="w-6 h-6 rounded-full bg-signal-500/60" aria-hidden="true" />
+      {/* Icon */}
+      <div className="w-10 h-10 rounded-md bg-navy-900/6 flex items-center justify-center shrink-0">
+        <LucideIcon name={service.icon} size={20} strokeWidth={1.5} className="text-navy-600" />
       </div>
 
       {/* Content */}
