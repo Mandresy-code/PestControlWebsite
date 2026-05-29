@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS custom properties ─────────────────────────────────────────────────── */
+:root {
+  --navy-900: #0E1F3D;
+  --cream:    #F5F1E8;
+  --cream-2:  #EFEAE0;
+  --paper:    #FFFFFF;
+  --signal-500: #B8C49E;
+
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-micro:    140ms;
+  --duration-standard: 220ms;
+  --duration-section:  420ms;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-navy-900 font-sans text-body leading-relaxed;
+    min-height: 100dvh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-medium text-navy-900 tracking-tight;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Focus visible — anneau sage */
+  :focus-visible {
+    outline: 3px solid rgba(184, 196, 158, 0.55);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Remove focus ring for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Remove default button styles */
+  button {
+    cursor: pointer;
+  }
+
+  /* Smooth scroll with reduced motion override */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ─── Utilities ─────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .container-site {
+    @apply mx-auto max-w-[1200px] px-24 md:px-40;
+  }
+
+  .section-padding {
+    @apply py-96 md:py-128;
+  }
+
+  .section-padding-sm {
+    @apply py-56 md:py-72;
+  }
+
+  /* Prose — articles */
+  .prose-eseis {
+    @apply max-w-[680px] text-body-lg leading-[1.7] text-navy-800;
+  }
+  .prose-eseis h2 {
+    @apply text-h2 text-navy-900 mt-56 mb-24;
+  }
+  .prose-eseis h3 {
+    @apply text-h3 text-navy-900 mt-40 mb-16;
+  }
+  .prose-eseis p {
+    @apply mb-24;
+  }
+  .prose-eseis ul {
+    @apply pl-24 mb-24 space-y-8 list-none;
+  }
+  .prose-eseis ul li {
+    @apply relative pl-20;
+  }
+  .prose-eseis ul li::before {
+    content: '';
+    @apply absolute left-0 top-[10px] w-[6px] h-[6px] rounded-full bg-signal-500;
+  }
+
+  /* Grain texture overlay */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}

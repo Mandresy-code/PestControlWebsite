@@ -1,0 +1,144 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import Hero from "@/components/sections/Hero";
+import UrgencyBanner from "@/components/sections/UrgencyBanner";
+import PestSelector from "@/components/sections/PestSelector";
+import MethodSection from "@/components/sections/MethodSection";
+import ProofsStats from "@/components/sections/ProofsStats";
+import ArticlesGrid from "@/components/sections/ArticlesGrid";
+import FinalCTA from "@/components/sections/FinalCTA";
+import SectionHead from "@/components/ui/SectionHead";
+import ServiceCard from "@/components/ui/ServiceCard";
+import { services, sectors } from "@/lib/content";
+
+// JSON-LD LocalBusiness
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "ESEIS Pest Control",
+  description: "Société de lutte antiparasitaire professionnelle — groupe BCR-i.",
+  url: "https://eseis-pestcontrol.fr",
+  email: "contact@eseis-pestcontrol.fr",
+  telephone: "+33 1 XX XX XX XX",
+  areaServed: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services de lutte antiparasitaire",
+  },
+};
+
+export const metadata: Metadata = {
+  title: "ESEIS Pest Control — L'hygiène, sans bruit.",
+  description:
+    "Lutte antiparasitaire professionnelle pour entreprises et particuliers. Dératisation, désinsectisation, punaises de lit, désinfection. Certibiocide. Astreinte 24/7.",
+};
+
+export default function HomePage() {
+  return (
+    <>
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      {/* 1. Hero */}
+      <Hero />
+
+      {/* 2. Bandeau urgence */}
+      <UrgencyBanner />
+
+      {/* 3. Services */}
+      <section className="bg-cream section-padding" aria-labelledby="services-title">
+        <div className="container-site">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-24 mb-56">
+            <SectionHead
+              eyebrow="Services"
+              title="Six interventions, une seule exigence."
+              description="Du rongeur au nuisible volant, du site industriel à la résidence : nos protocoles s'adaptent à votre contexte, pas l'inverse."
+              id="services-title"
+            />
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
+            >
+              Tous les services
+              <ArrowRight size={16} strokeWidth={1.5} />
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-24">
+            {services.map((service) => (
+              <ServiceCard key={service.slug} service={service} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Sélecteur nuisible */}
+      <PestSelector />
+
+      {/* 5. Secteurs */}
+      <section className="bg-cream section-padding" aria-labelledby="secteurs-title">
+        <div className="container-site">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-24 mb-56">
+            <SectionHead
+              eyebrow="Secteurs"
+              title="Votre activité a ses contraintes. Nos protocoles aussi."
+              id="secteurs-title"
+            />
+            <Link
+              href="/secteurs"
+              className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
+            >
+              Tous les secteurs
+              <ArrowRight size={16} strokeWidth={1.5} />
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-24">
+            {sectors.map((sector) => (
+              <Link
+                key={sector.slug}
+                href={`/secteurs/${sector.slug}`}
+                className="group flex flex-col gap-16 p-32 rounded-lg bg-paper border border-navy-900/8 shadow-1 hover:shadow-2 transition-shadow duration-standard ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-md bg-navy-900/6 flex items-center justify-center">
+                    <span className="w-5 h-5 rounded-full bg-signal-500/50" />
+                  </div>
+                  <span
+                    className={`font-mono text-eyebrow uppercase tracking-widest px-10 py-4 rounded-pill ${
+                      sector.badge === "Particuliers"
+                        ? "bg-signal-500/15 text-navy-700"
+                        : "bg-navy-900/8 text-navy-500"
+                    }`}
+                  >
+                    {sector.badge}
+                  </span>
+                </div>
+                <h3 className="text-h3 font-medium text-navy-900">{sector.title}</h3>
+                <p className="text-body text-navy-600 leading-relaxed flex-1">{sector.description}</p>
+                <span className="inline-flex items-center gap-8 text-body font-medium text-navy-700 group-hover:text-navy-900 transition-colors duration-micro">
+                  En savoir plus
+                  <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-micro group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Méthode IPM */}
+      <MethodSection />
+
+      {/* 7. Preuves & stats */}
+      <ProofsStats />
+
+      {/* 8. Ressources */}
+      <ArticlesGrid />
+
+      {/* 9. CTA final */}
+      <FinalCTA />
+    </>
+  );
+}
