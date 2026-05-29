@@ -17,6 +17,7 @@ export default function AgentPhoto({ src }: AgentPhotoProps) {
       src={src}
       alt="Technicien ESEIS en intervention"
       fill
+      unoptimized
       className="object-cover"
       sizes="(max-width: 980px) 100vw, 50vw"
       onError={() => setFailed(true)}
