@@ -17,7 +17,7 @@ export default async function RessourcesPage() {
   const articles = await getArticles();
 
   return (
-    <div className="min-h-screen bg-cream pt-[72px]">
+    <div className="min-h-screen bg-cream pt-[88px]">
       <div className="bg-navy-900 pt-40 pb-72">
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Ressources</p>

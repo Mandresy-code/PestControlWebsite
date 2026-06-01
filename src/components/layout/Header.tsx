@@ -37,7 +37,7 @@ export default function Header() {
           : "bg-cream/80 backdrop-blur-sm"
       )}
     >
-      <div className="mx-auto max-w-[1200px] px-24 md:px-40 h-[72px] flex items-center gap-32">
+      <div className="mx-auto max-w-[1200px] px-24 md:px-40 h-[88px] flex items-center gap-32">
         {/* Logo */}
         <Link
           href="/"
@@ -47,8 +47,8 @@ export default function Header() {
           <img
             src="/logo.svg"
             alt="ESEIS Pest Control"
-            width={48}
-            height={48}
+            width={80}
+            height={80}
             className="shrink-0"
           />
         </Link>
