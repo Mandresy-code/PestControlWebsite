@@ -32,7 +32,7 @@ export default async function ArticleDetailPage(
 
   return (
     <>
-      <div className="bg-cream pt-[88px]">
+      <div className="bg-cream pt-[112px]">
         <div className="container-site pt-40 pb-56">
           <Link
             href="/ressources"

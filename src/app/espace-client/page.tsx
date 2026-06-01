@@ -13,7 +13,7 @@ export default function EspaceClientPage() {
   return (
     <div className="min-h-screen grid md:grid-cols-2">
       {/* Left — form */}
-      <div className="flex flex-col justify-center px-32 md:px-56 py-56 bg-cream pt-[88px] md:pt-56">
+      <div className="flex flex-col justify-center px-32 md:px-56 py-56 bg-cream pt-[112px] md:pt-56">
         <div className="max-w-[400px] w-full mx-auto">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-500 mb-20">
             Espace client

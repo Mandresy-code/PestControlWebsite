@@ -13,7 +13,7 @@ export default async function DiagnosticPage() {
   const pests: Pest[] = await getPests();
 
   return (
-    <div className="min-h-screen bg-cream pt-[88px]">
+    <div className="min-h-screen bg-cream pt-[112px]">
       <div className="container-site py-56 md:py-72">
         <div className="max-w-[680px] mx-auto">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-500 mb-12">

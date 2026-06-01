@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-  <!-- Arc principal : de 11h (en haut à gauche) dans le sens horaire jusqu'à 5h (en bas à droite) — 180° -->
+  <!-- Arc principal : 11h → 5h (sens horaire, 180°) -->
   <path
     d="M 123 66 A 155 155 0 0 1 278 334"
     fill="none"
     stroke="#0E1F3D"
     stroke-width="9"
   />
-  <!-- Arc secondaire : de 6h (bas) à 8h (bas gauche) — 60° -->
+  <!-- Arc secondaire : 6h → 8h (sens horaire, 60°) -->
   <path
     d="M 200 355 A 155 155 0 0 1 66 278"
     fill="none"
@@ -16,7 +16,7 @@
   />
   <!-- Wordmark ESEIS -->
   <text
-    x="200" y="222"
+    x="200" y="215"
     text-anchor="middle"
     font-family="Geist, -apple-system, system-ui, sans-serif"
     font-weight="700"
@@ -24,14 +24,14 @@
     fill="#0E1F3D"
     letter-spacing="4"
   >ESEIS</text>
-  <!-- Sous-titre PEST CONTROL -->
+  <!-- Sous-titre PEST CONTROL (agrandi) -->
   <text
-    x="200" y="256"
+    x="200" y="254"
     text-anchor="middle"
     font-family="Geist, -apple-system, system-ui, sans-serif"
-    font-weight="400"
-    font-size="16"
+    font-weight="500"
+    font-size="26"
     fill="#0E1F3D"
-    letter-spacing="9"
+    letter-spacing="7"
   >PEST CONTROL</text>
 </svg>

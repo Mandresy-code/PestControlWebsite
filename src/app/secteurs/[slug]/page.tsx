@@ -31,7 +31,7 @@ export default async function SecteurDetailPage(
 
   return (
     <>
-      <div className="bg-navy-900 pt-[128px] pb-72">
+      <div className="bg-navy-900 pt-[152px] pb-72">
         <div className="container-site">
           <Link href="/secteurs" className="inline-flex items-center gap-8 text-navy-300 hover:text-white text-sm font-medium mb-32 transition-colors duration-micro focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm">
             <ArrowLeft size={14} strokeWidth={1.5} /> Tous les secteurs
