@@ -36,10 +36,13 @@ export default function Footer() {
       <div className="relative mx-auto max-w-[1200px] px-24 md:px-40 pt-72 pb-40">
         {/* Brand + devise */}
         <div className="mb-56">
-          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white font-medium leading-none mb-16">
-            ESEIS<br />
-            <span className="text-signal-500">Pest Control</span>
-          </div>
+          <img
+            src="/logo.svg"
+            alt="ESEIS Pest Control"
+            width={56}
+            height={56}
+            className="mb-16 brightness-0 invert"
+          />
           <p className="text-body-lg text-navy-300 italic max-w-[28ch] leading-relaxed">
             «&nbsp;L&apos;excellence en matière de nuisibles.&nbsp;»
           </p>

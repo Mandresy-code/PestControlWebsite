@@ -44,12 +44,13 @@ export default function Header() {
           className="flex items-center gap-12 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
           aria-label="ESEIS Pest Control — Accueil"
         >
-          <div className="flex items-center gap-10">
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-navy-900 font-medium leading-none">
-              ESEIS<br />
-              <span className="text-signal-500">Pest Control</span>
-            </span>
-          </div>
+          <img
+            src="/logo.svg"
+            alt="ESEIS Pest Control"
+            width={48}
+            height={48}
+            className="shrink-0"
+          />
         </Link>
 
         {/* Desktop nav */}
