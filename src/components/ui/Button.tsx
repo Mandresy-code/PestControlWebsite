@@ -25,8 +25,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants: Record<Variant, string> = {
       primary: onDark
-        ? "bg-cream text-navy-900 hover:bg-white"
-        : "bg-navy-900 text-white hover:bg-navy-800",
+        ? "bg-terra-500 text-white hover:bg-terra-600"
+        : "bg-terra-500 text-white hover:bg-terra-600",
       outline: onDark
         ? "border border-cream/40 text-cream hover:border-cream/70 hover:bg-cream/10"
         : "border border-navy-900/30 text-navy-900 hover:border-navy-900/60 hover:bg-navy-900/5",

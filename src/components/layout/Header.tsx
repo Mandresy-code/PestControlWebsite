@@ -85,8 +85,8 @@ export default function Header() {
           >
             Espace client
           </Link>
-          <Link href="/diagnostic">
-            <Button size="sm">Diagnostic</Button>
+          <Link href="/contact">
+            <Button size="sm">Urgence - 48H</Button>
           </Link>
         </div>
 
@@ -129,8 +129,8 @@ export default function Header() {
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
             </Link>
-            <Link href="/diagnostic" className="px-12">
-              <Button size="sm" className="w-full">Diagnostic</Button>
+            <Link href="/contact" className="px-12">
+              <Button size="sm" className="w-full">Urgence - 48H</Button>
             </Link>
           </div>
         </div>

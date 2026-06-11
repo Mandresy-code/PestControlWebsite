@@ -39,6 +39,12 @@ const config: Config = {
           800: "#4a5a39",
           900: "#3c4930",
         },
+        terra: {
+          400: "#CC7550",
+          500: "#B85C38",
+          600: "#A34D2D",
+          700: "#8C3F24",
+        },
         success: "#2F8F5E",
         warning: "#C48A1C",
         danger:  "#B83A2E",

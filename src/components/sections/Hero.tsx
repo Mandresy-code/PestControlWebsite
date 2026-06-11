@@ -3,9 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Shield, Clock, MapPin } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
-import Eyebrow from "@/components/ui/Eyebrow";
 
-const pillars = ["Lutte raisonnée", "IPM", "Certibiocide"];
 
 const meta = [
   { icon: Shield, label: "Certibiocide" },
@@ -24,7 +22,7 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-end bg-navy-950 overflow-hidden"
-      aria-label="Hero — L'excellence en matière de nuisibles."
+      aria-label="Hero — Votre tranquillité, notre expertise."
     >
       {/* Fond — vidéo ou placeholder */}
       <div className="absolute inset-0 z-0">
@@ -73,14 +71,10 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
 
       {/* Contenu */}
       <div className="relative z-20 container-site pb-72 md:pb-96 pt-[152px]">
-        <div className="flex flex-wrap gap-16 mb-32">
-          {pillars.map((p) => (
-            <Eyebrow key={p} className="text-signal-300">{p}</Eyebrow>
-          ))}
-        </div>
+
 
         <h1 className="text-display font-medium text-white tracking-tight max-w-[18ch] mb-24">
-          L&apos;excellence<br />en matière de nuisibles.
+          Votre tranquillité,<br />notre expertise.
         </h1>
 
         <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed mb-40">
