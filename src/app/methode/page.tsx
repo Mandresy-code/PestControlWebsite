@@ -22,7 +22,7 @@ export default async function MethodePage() {
 
   return (
     <>
-      <div className="bg-navy-900 pt-[152px] pb-72">
+      <div className="bg-navy-900 pt-[112px] pb-72">
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Méthode</p>
           <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[20ch]">

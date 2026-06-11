@@ -23,7 +23,7 @@ export default function AProposPage() {
   return (
     <>
       {/* Hero */}
-      <div className="bg-navy-900 pt-[152px] pb-72 relative overflow-hidden">
+      <div className="bg-navy-900 pt-[112px] pb-72 relative overflow-hidden">
         <Arc size={480} className="absolute -right-40 -top-40 text-white" opacity={0.05} />
         <div className="relative container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">À propos</p>

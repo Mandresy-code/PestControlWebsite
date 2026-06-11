@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { Search, ClipboardList, Wrench, BarChart3 } from "lucide-react";
-import AgentPhoto from "@/components/ui/AgentPhoto";
 import SectionHead from "@/components/ui/SectionHead";
 import Eyebrow from "@/components/ui/Eyebrow";
 import { methodSteps } from "@/lib/content";
@@ -54,7 +54,13 @@ export default function MethodSection({ photoUrl }: MethodSectionProps) {
           <div className="relative">
             <div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-navy-100">
               {photoUrl ? (
-                <AgentPhoto src={photoUrl} />
+                <Image
+                  src={photoUrl}
+                  alt="Technicien ESEIS en intervention"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 980px) 100vw, 50vw"
+                />
               ) : (
                 <div className="absolute inset-0 bg-gradient-to-br from-navy-200 to-navy-300 flex flex-col items-center justify-center gap-12 text-center p-32">
                   <div className="w-16 h-16 rounded-full bg-navy-400/30 flex items-center justify-center">

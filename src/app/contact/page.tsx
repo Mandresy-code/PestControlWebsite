@@ -19,7 +19,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream pt-[112px]">
+    <div className="min-h-screen bg-cream pt-[72px]">
       {/* Hero */}
       <div className="bg-navy-900 pt-40 pb-72">
         <div className="container-site">
