@@ -37,19 +37,20 @@ export default function Header() {
           : "bg-cream/80 backdrop-blur-sm"
       )}
     >
-      <div className="mx-auto max-w-[1200px] px-24 md:px-40 h-[72px] flex items-center gap-32">
+      <div className="mx-auto max-w-[1200px] px-24 md:px-40 h-[112px] flex items-center gap-32">
         {/* Logo */}
         <Link
           href="/"
           className="flex items-center gap-12 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
           aria-label="ESEIS Pest Control — Accueil"
         >
-          <div className="flex items-center gap-10">
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-navy-900 font-medium leading-none">
-              ESEIS<br />
-              <span className="text-signal-500">Pest Control</span>
-            </span>
-          </div>
+          <img
+            src="/logo.svg"
+            alt="ESEIS Pest Control"
+            width={104}
+            height={104}
+            className="shrink-0"
+          />
         </Link>
 
         {/* Desktop nav */}
