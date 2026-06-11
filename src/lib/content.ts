@@ -396,7 +396,7 @@ export const methodSteps: MethodStep[] = [
 // ─── Stats ─────────────────────────────────────────────────────────────────────
 
 export const stats: Stat[] = [
-  { value: "48h", label: "Délai d'intervention garanti", mono: true },
+  { value: "48h", label: "Délai d'intervention moyen", mono: true },
   { value: "100%", label: "Techniciens certifiés Certibiocide", mono: true },
   { value: "24/7", label: "Astreinte pour les urgences", mono: true },
   { value: "12", label: "Secteurs d'activité couverts", mono: true },
