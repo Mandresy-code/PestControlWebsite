@@ -5,7 +5,7 @@ export default function UrgencyBanner() {
     <div className="bg-navy-900 text-white">
       <div className="container-site py-16 flex flex-col sm:flex-row items-center justify-between gap-12">
         <p className="text-body text-navy-200 text-center sm:text-left">
-          Urgence nuisibles&nbsp;? Notre astreinte répond 7j/7, jours fériés inclus.
+          Urgence nuisibles&nbsp;? Notre service d&apos;urgence répond 7j/7, jours fériés inclus.
         </p>
         <Link
           href="/contact"

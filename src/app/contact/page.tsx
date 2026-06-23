@@ -97,7 +97,7 @@ export default function ContactPage() {
             <div className="bg-navy-900 text-white rounded-lg p-32">
               <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Urgence</p>
               <p className="text-body text-navy-200 mb-20">
-                Nid de frelons, infestation soudaine avant inspection : notre astreinte répond 7j/7.
+                Nid de frelons, infestation soudaine avant inspection : notre service d&apos;urgence répond 7j/7.
               </p>
               <p className="text-body font-medium text-white">
                 Contactez-nous via le formulaire ou par email.

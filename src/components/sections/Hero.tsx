@@ -7,7 +7,7 @@ import Arc from "@/components/ui/Arc";
 
 const meta = [
   { icon: Shield, label: "Certibiocide" },
-  { icon: Clock,  label: "Astreinte 24/7" },
+  { icon: Clock,  label: "Urgences 24h/24" },
   { icon: MapPin, label: "Zones couvertes" },
 ];
 
