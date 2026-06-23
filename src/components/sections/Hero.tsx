@@ -78,8 +78,8 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
         </h1>
 
         <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed mb-40">
-          ESEIS Pest Control intervient là où l&apos;infestation n&apos;a pas sa place —
-          restaurants, hôtels, sites industriels, domiciles — avec la précision
+          ESEIS Pest Control intervient là où l&apos;infestation n&apos;a pas sa place :
+          restaurants, hôtels, sites industriels, domiciles. Avec la précision
           de la lutte raisonnée et la discrétion que votre activité exige.
         </p>
 

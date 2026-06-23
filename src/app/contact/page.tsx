@@ -28,7 +28,7 @@ export default function ContactPage() {
             Parlons de votre situation.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed">
-            Pas de formulaire générique. Décrivez votre contexte — nous revenons avec
+            Pas de formulaire générique. Décrivez votre contexte : nous revenons avec
             une réponse adaptée.
           </p>
         </div>

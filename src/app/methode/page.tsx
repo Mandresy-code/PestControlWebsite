@@ -26,7 +26,7 @@ export default async function MethodePage() {
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Méthode</p>
           <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[20ch]">
-            IPM — la lutte qui comprend avant d&apos;agir.
+            IPM : la lutte qui comprend avant d&apos;agir.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[58ch] leading-relaxed">
             Integrated Pest Management : l&apos;unique approche qui réconcilie efficacité, sécurité et durabilité.
@@ -43,7 +43,7 @@ export default async function MethodePage() {
           </p>
           <p className="text-body-lg text-navy-700 leading-[1.7]">
             Le biocide n&apos;est jamais la première réponse. Quand il est nécessaire, il est choisi pour sa
-            précision — jamais pour sa facilité.
+            précision, jamais pour sa facilité.
           </p>
         </div>
       </section>

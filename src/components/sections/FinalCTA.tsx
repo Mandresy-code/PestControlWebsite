@@ -21,7 +21,7 @@ export default function FinalCTA() {
         </h2>
         <p className="text-body-lg text-navy-200 leading-relaxed mb-40 max-w-[52ch] mx-auto">
           Chaque situation est différente. Nos techniciens se déplacent pour évaluer
-          avant de proposer — sans engagement, sous 48 h ouvrées.
+          avant de proposer, sans engagement, sous 48 h ouvrées.
         </p>
         <div className="flex flex-wrap gap-16 justify-center mb-40">
           <Link href="/diagnostic">

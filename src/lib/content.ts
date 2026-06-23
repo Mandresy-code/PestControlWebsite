@@ -73,7 +73,7 @@ export const services: Service[] = [
     description:
       "Protocoles IPM ciblés pour éliminer durablement rongeurs et campagnols, sans survente de biocides.",
     longDescription:
-      "Rats, souris, mulots : leur présence n'est jamais anodine. Contamination alimentaire, dégâts matériels, risques sanitaires réels. Notre approche IPM combine diagnostic comportemental, poses stratégiques et suivi documenté — sans pulvérisation systématique. Résultat : une infestation résolue, pas masquée.",
+      "Rats, souris, mulots : leur présence n'est jamais anodine. Contamination alimentaire, dégâts matériels, risques sanitaires réels. Notre approche IPM combine diagnostic comportemental, poses stratégiques et suivi documenté, sans pulvérisation systématique. Résultat : une infestation résolue, pas masquée.",
     chips: ["IPM", "Sans contamination", "Traçabilité", "Certibiocide"],
     methods: [
       "Diagnostic comportemental et cartographie des points d'entrée",
@@ -92,12 +92,12 @@ export const services: Service[] = [
     description:
       "Traitement des nuisibles rampants (cafards, fourmis, puces, acariens) adapté à chaque contexte d'activité.",
     longDescription:
-      "Blattes, fourmis, puces, mites alimentaires : chaque espèce exige un protocole distinct. Nous identifions l'espèce, localisons les nids et gîtes, puis intervenons avec les insecticides les mieux ciblés — en respectant vos contraintes d'exploitation (cuisine ouverte, chambres froides, zones de soins).",
-    chips: ["Blattes", "Fourmis", "Puces", "Mites", "Gel appât"],
+      "Blattes, fourmis, puces, mites alimentaires : chaque espèce exige un protocole distinct. Nous identifions l'espèce, localisons les nids et gîtes, puis intervenons avec les insecticides les mieux ciblés, en respectant vos contraintes d'exploitation (cuisine ouverte, chambres froides, zones de soins).",
+    chips: ["Blattes", "Fourmis", "Puces", "Mites"],
     methods: [
       "Identification de l'espèce et de la source d'infestation",
-      "Application de gel appât ou traitement résiduel selon la zone",
-      "Suivi 15 j et 30 j post-intervention",
+      "Application ciblée selon la zone (gel appât, traitement résiduel ou thermique)",
+      "Visites de contrôle à 15 et 30 jours après le traitement",
       "Conseils d'hygiène préventifs écrits",
     ],
   },
@@ -110,7 +110,7 @@ export const services: Service[] = [
     description:
       "Traitement thermique et chimique combiné pour une éradication totale, avec garantie de résultat.",
     longDescription:
-      "La punaise de lit est l'insecte le plus difficile à éliminer sans protocole rigoureux. Notre méthode combine traitement thermique (chaleur 56 °C) et application résiduelle ciblée — l'unique combinaison qui atteint les œufs. Garantie de résultat écrite, re-traitement inclus si nécessaire.",
+      "La punaise de lit est l'insecte le plus difficile à éliminer sans protocole rigoureux. Notre méthode combine traitement thermique (chaleur 56 °C) et application résiduelle ciblée : c'est la seule combinaison qui atteint les œufs. Garantie de résultat écrite, re-traitement inclus si nécessaire.",
     chips: ["Traitement thermique", "Garantie résultat", "Hôtellerie", "Résidentiel"],
     methods: [
       "Inspection et cartographie de l'infestation",
@@ -129,7 +129,7 @@ export const services: Service[] = [
     description:
       "Désinfection de surfaces et d'ambiances (ULV) pour les environnements à risque sanitaire élevé.",
     longDescription:
-      "Dans les cuisines professionnelles, blocs opératoires ou espaces de soins, la désinfection n'est pas une option. Nous intervenons avec des produits virucides, bactéricides et fongicides homologués, appliqués par nébulisation ULV ou traitement manuel de surface selon les protocoles HACCP.",
+      "Dans les cuisines professionnelles, blocs opératoires ou espaces de soins, la désinfection n'est pas une option. Nous intervenons avec des produits virucides, bactéricides et fongicides homologués, appliqués par nébulisation ULV ou traitement manuel de surface, conformément aux protocoles HACCP (normes d'hygiène alimentaire et sanitaire).",
     chips: ["ULV", "HACCP", "Virucide", "Fongicide", "Santé"],
     methods: [
       "Évaluation du niveau de risque et sélection du biocide",
@@ -158,15 +158,33 @@ export const services: Service[] = [
     urgent: true,
   },
   {
-    slug: "prevention",
+    slug: "depigeonnage",
     index: "06",
+    title: "Dépigeonnage",
+    shortTitle: "Pigeons",
+    icon: "Bird",
+    description:
+      "Pose de systèmes anti-nidification, effarouchement et nettoyage des surfaces souillées pour façades, toitures et sites industriels.",
+    longDescription:
+      "Les pigeons causent des dégâts structurels et sanitaires souvent sous-estimés : fientes corrosives sur façades et équipements, risques infectieux (ornithose, histoplasmose), obstruction des gouttières. Nous déployons des solutions durables et discrètes — filets, pics, câbles tendus, systèmes de dissuasion — sans nuire aux animaux, avec un résultat visible dès les premières semaines.",
+    chips: ["Anti-nidification", "Filets & pics", "Discrétion", "Sites industriels"],
+    methods: [
+      "Inspection et cartographie des zones de nidification",
+      "Pose de dispositifs anti-nidification adaptés (pics, filets, câbles)",
+      "Nettoyage et décontamination des surfaces souillées par les fientes",
+      "Contrôle et maintenance périodique du dispositif",
+    ],
+  },
+  {
+    slug: "prevention",
+    index: "07",
     title: "Prévention & audit",
     shortTitle: "Prévention",
     icon: "ShieldCheck",
     description:
       "Audit IFS/BRC, plans de lutte préventifs, formations du personnel et suivi documenté.",
     longDescription:
-      "La meilleure intervention est celle qu'on n'a pas eu à faire. Nos auditeurs certifiés analysent vos locaux, cartographient les vulnérabilités et établissent un plan de maîtrise des nuisibles (PMN) conforme aux référentiels IFS, BRC et HACCP. Accompagnement à la certification inclus.",
+      "La meilleure intervention est celle qu'on n'a pas eu à faire. Nos auditeurs certifiés analysent vos locaux, cartographient les vulnérabilités et établissent un plan de maîtrise des nuisibles (PMN) conforme aux référentiels IFS, BRC et HACCP (normes internationales de certification agroalimentaire). Accompagnement à la certification inclus.",
     chips: ["IFS / BRC", "PMN", "Formation", "Certibiocide"],
     methods: [
       "Audit terrain complet (intérieur + extérieur)",
@@ -267,7 +285,7 @@ export const sectors: Sector[] = [
       "Présence d'enfants et animaux domestiques",
       "Produits à faible impact en espace de vie",
       "Délai d'intervention rapide",
-      "Explications claires et sans jargon",
+      "Explications claires, sans termes techniques inutiles",
     ],
   },
 ];
@@ -398,7 +416,7 @@ export const methodSteps: MethodStep[] = [
 export const stats: Stat[] = [
   { value: "48h", label: "Délai d'intervention moyen", mono: true },
   { value: "100%", label: "Techniciens certifiés Certibiocide", mono: true },
-  { value: "24/7", label: "Astreinte pour les urgences", mono: true },
+  { value: "24/7", label: "Service d'urgence disponible en continu", mono: true },
   { value: "12", label: "Secteurs d'activité couverts", mono: true },
 ];
 
@@ -415,19 +433,19 @@ export const proofs: Proof[] = [
     icon: "FileCheck",
     title: "Conformité IFS / BRC",
     description:
-      "Nos protocoles s'intègrent directement dans les systèmes qualité IFS Food et BRC — documentation et traçabilité conformes aux audits.",
+      "Nos protocoles s'intègrent directement dans les systèmes qualité IFS Food et BRC (référentiels internationaux de sécurité alimentaire), avec une documentation et une traçabilité conformes aux exigences d'audit.",
   },
   {
     icon: "Leaf",
     title: "Lutte raisonnée (IPM)",
     description:
-      "L'IPM — Integrated Pest Management — est notre philosophie : d'abord comprendre, puis agir avec précision, jamais en excès.",
+      "L'IPM (Integrated Pest Management, ou lutte antiparasitaire raisonnée) est notre philosophie : d'abord comprendre, puis agir avec précision, jamais en excès.",
   },
   {
     icon: "Clock",
-    title: "Astreinte 24/7",
+    title: "Disponibilité 24h/24",
     description:
-      "Nid de frelons, infestation soudaine avant inspection : notre astreinte répond 7j/7, jours fériés inclus.",
+      "Nid de frelons, infestation soudaine avant inspection : notre service d'urgence répond 7j/7, jours fériés inclus.",
   },
 ];
 
@@ -509,7 +527,8 @@ export const contact = {
   address: "ESEIS Pest Control — Groupe BCR-i",
   zones: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
   emergencyPhone: "+33 6 XX XX XX XX",
-  hours: "Lun–Ven 8h–19h · Astreinte 24/7",
+  hours: "Lun–Ven, 8h–19h",
+  emergencyHours: "Service d'urgence disponible 24h/24, 7j/7",
 };
 
 // ─── Certifications ────────────────────────────────────────────────────────────

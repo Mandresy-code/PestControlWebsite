@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import SectionHead from "@/components/ui/SectionHead";
 import Arc from "@/components/ui/Arc";
 import FinalCTA from "@/components/sections/FinalCTA";
@@ -45,17 +43,16 @@ export default function AProposPage() {
             <div className="prose-eseis space-y-20">
               <p>
                 ESEIS Pest Control est né d&apos;un constat simple : le marché de la lutte antiparasitaire
-                est dominé par la peur. Visuels alarmistes, jargon technique intimidant, devis opaques.
+                est dominé par la peur. Visuels alarmistes, discours technique inaccessible, devis opaques.
                 Nous avons choisi l&apos;inverse.
               </p>
               <p>
-                Notre ligne de marque — «&nbsp;L&apos;hygiène, sans bruit.&nbsp;» — n&apos;est pas un slogan.
-                C&apos;est une promesse opérationnelle : intervenir efficacement, sans perturber votre
+                Notre promesse opérationnelle : intervenir efficacement, sans perturber votre
                 activité, sans alerter votre clientèle, sans laisser de trace visible de notre passage.
               </p>
               <p>
-                Nous nous adressons aux professionnels qui ont des contraintes réelles — inspections
-                sanitaires, certifications IFS/BRC, réputation à protéger — et aux particuliers qui
+                Nous nous adressons aux professionnels soumis à des contraintes réelles (inspections
+                sanitaires, certifications IFS/BRC, réputation à protéger) et aux particuliers qui
                 méritent une réponse claire et sans condescendance.
               </p>
             </div>

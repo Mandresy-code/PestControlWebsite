@@ -62,6 +62,18 @@ export default function EspaceClientPage() {
             >
               Problème de connexion ? Contactez-nous
             </a>
+            <div className="border-t border-navy-900/8 pt-20">
+              <p className="text-sm text-navy-500 text-center">
+                Pas encore de compte ?{" "}
+                <a
+                  href="mailto:contact@eseis-pestcontrol.fr?subject=Création compte espace client"
+                  className="text-navy-700 hover:text-navy-900 underline underline-offset-2 transition-colors duration-micro"
+                >
+                  Contactez-nous
+                </a>
+                {" "}— votre accès est créé par notre équipe lors de votre première intervention.
+              </p>
+            </div>
           </form>
         </div>
       </div>
@@ -78,7 +90,7 @@ export default function EspaceClientPage() {
           </h2>
           <p className="text-body-lg text-navy-200 leading-relaxed mb-40">
             Rapports d&apos;intervention détaillés, plannings de passage, traçabilité
-            complète pour vos audits IFS / BRC — tout dans votre espace dédié.
+            complète pour vos audits IFS / BRC, le tout centralisé dans votre espace dédié.
           </p>
           <div className="flex flex-col gap-16">
             {[
