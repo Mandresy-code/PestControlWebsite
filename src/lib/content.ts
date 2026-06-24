@@ -166,7 +166,7 @@ export const services: Service[] = [
     description:
       "Pose de systèmes anti-nidification, effarouchement et nettoyage des surfaces souillées pour façades, toitures et sites industriels.",
     longDescription:
-      "Les pigeons causent des dégâts structurels et sanitaires souvent sous-estimés : fientes corrosives sur façades et équipements, risques infectieux (ornithose, histoplasmose), obstruction des gouttières. Nous déployons des solutions durables et discrètes — filets, pics, câbles tendus, systèmes de dissuasion — sans nuire aux animaux, avec un résultat visible dès les premières semaines.",
+      "Les pigeons causent des dégâts structurels et sanitaires souvent sous-estimés : fientes corrosives sur façades et équipements, risques infectieux (ornithose, histoplasmose), obstruction des gouttières. Nous déployons des solutions durables et discrètes (filets, pics, câbles tendus, systèmes de dissuasion), sans nuire aux animaux, avec un résultat visible dès les premières semaines.",
     chips: ["Anti-nidification", "Filets & pics", "Discrétion", "Sites industriels"],
     methods: [
       "Inspection et cartographie des zones de nidification",

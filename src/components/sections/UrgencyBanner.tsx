@@ -11,7 +11,7 @@ export default function UrgencyBanner() {
           href="/contact"
           className="inline-flex items-center gap-10 font-mono text-body font-medium text-white hover:text-signal-300 transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm shrink-0"
         >
-          Nous contacter — 24h/24
+          Nous contacter · 24h/24
         </Link>
       </div>
     </div>

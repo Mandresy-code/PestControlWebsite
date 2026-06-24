@@ -71,7 +71,7 @@ export default function EspaceClientPage() {
                 >
                   Contactez-nous
                 </a>
-                {" "}— votre accès est créé par notre équipe lors de votre première intervention.
+                . Votre accès est créé par notre équipe lors de votre première intervention.
               </p>
             </div>
           </form>

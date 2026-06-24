@@ -21,7 +21,7 @@ export default function MethodSection({ photoUrl }: MethodSectionProps) {
           <div>
             <SectionHead
               eyebrow="Notre méthode"
-              title="IPM — la lutte qui comprend avant d'agir."
+              title="IPM : la lutte qui comprend avant d'agir."
               description="Integrated Pest Management : une philosophie qui place le diagnostic avant le traitement, et la prévention avant l'urgence."
               className="mb-56"
               id="method-title"
