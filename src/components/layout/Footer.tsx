@@ -9,6 +9,7 @@ const serviceLinks = [
   { label: "Punaises de lit", href: "/services/punaises" },
   { label: "Désinfection",    href: "/services/desinfection" },
   { label: "Nuisibles volants",href: "/services/volants" },
+  { label: "Dépigeonnage",    href: "/services/depigeonnage" },
   { label: "Prévention",      href: "/services/prevention" },
 ];
 
@@ -126,8 +127,9 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-24">
+            <div className="mt-24 flex flex-col gap-4">
               <p className="text-sm text-navy-500">{contact.hours}</p>
+              <p className="text-sm text-terra-400">{contact.emergencyHours}</p>
             </div>
           </div>
         </div>

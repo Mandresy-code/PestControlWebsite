@@ -25,8 +25,8 @@ export default async function RessourcesPage() {
             Mieux comprendre pour mieux agir.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed">
-            Encyclopédie des nuisibles, protocoles, conseils d&apos;audit — des contenus
-            écrits par nos techniciens, pas par une IA en roue libre.
+            Encyclopédie des nuisibles, protocoles et conseils d&apos;audit,
+            rédigés par nos techniciens terrain.
           </p>
         </div>
       </div>

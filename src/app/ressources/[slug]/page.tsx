@@ -66,7 +66,7 @@ export default async function ArticleDetailPage(
                 <h2>Pourquoi ce sujet nous tient à cœur</h2>
                 <p>
                   {article.excerpt} C&apos;est pourquoi nous avons souhaité dédier un guide
-                  complet à ce sujet — pour que chaque professionnel ou particulier dispose des
+                  complet à ce sujet, pour que chaque professionnel ou particulier dispose des
                   informations nécessaires avant même de nous appeler.
                 </p>
                 <h2>Ce que vous devez retenir</h2>

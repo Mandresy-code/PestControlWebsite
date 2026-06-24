@@ -77,7 +77,7 @@ export default async function ServiceDetailPage(
                 <p className="text-body text-navy-200 leading-relaxed">
                   Tous nos traitements suivent les principes de l&apos;Integrated Pest Management :
                   diagnostic d&apos;abord, méthode mécanique ou physique si possible, biocide en
-                  dernier recours — toujours avec un technicien Certibiocide.
+                  dernier recours, toujours avec un technicien Certibiocide.
                 </p>
               </div>
             </div>

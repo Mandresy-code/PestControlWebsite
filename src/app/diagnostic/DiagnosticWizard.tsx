@@ -74,7 +74,7 @@ const situations: { id: Situation; label: string; sub: string }[] = [
   { id: "premiere",  label: "Première apparition",  sub: "Je constate le problème pour la première fois." },
   { id: "recurrent", label: "Problème récurrent",   sub: "Le nuisible revient régulièrement." },
   { id: "audit",     label: "Audit imminent",        sub: "J'ai un contrôle IFS, BRC ou sanitaire à venir." },
-  { id: "preventif", label: "Démarche préventive",   sub: "Pas d'infestation active — je veux prévenir." },
+  { id: "preventif", label: "Démarche préventive",   sub: "Pas d'infestation active : je veux prévenir." },
 ];
 
 // ─── Inner wizard ────────────────────────────────────────────────────────────────
@@ -233,7 +233,7 @@ function WizardInner({ pests }: { pests: Pest[] }) {
               : <Check size={20} strokeWidth={1.5} className="text-signal-500 shrink-0 mt-0.5" />}
             <p className="text-body text-navy-800">
               {urgent
-                ? "Nuisible urgent — nous privilégierons votre dossier. Délai cible : sous 24 h ouvrées."
+                ? "Nuisible urgent : nous privilégierons votre dossier. Délai cible : sous 24 h ouvrées."
                 : "Nous reviendrons vers vous sous 48 h ouvrées pour organiser l'intervention."}
             </p>
           </div>

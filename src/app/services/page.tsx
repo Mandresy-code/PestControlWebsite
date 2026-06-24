@@ -21,7 +21,7 @@ export default async function ServicesPage() {
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[60ch] leading-relaxed">
             Chaque nuisible, chaque secteur, chaque bâtiment a ses spécificités.
-            Nos protocoles IPM s&apos;adaptent — jamais l&apos;inverse.
+            Nos protocoles IPM s&apos;adaptent. Jamais l&apos;inverse.
           </p>
         </div>
       </div>

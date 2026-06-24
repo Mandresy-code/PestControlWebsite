@@ -4,7 +4,7 @@ import {
   UtensilsCrossed, Hotel, Factory, HeartPulse, Warehouse, Home,
   Search, ClipboardList, Wrench, BarChart3,
   Award, FileCheck, Leaf, Clock,
-  Binoculars, Feather, Zap, Building2,
+  Binoculars, Feather, Zap, Building2, Bird,
 } from "lucide-react";
 
 type IconComponent = React.ComponentType<LucideProps>;
@@ -14,7 +14,7 @@ const icons: Record<string, IconComponent> = {
   UtensilsCrossed, Hotel, Factory, HeartPulse, Warehouse, Home,
   Search, ClipboardList, Wrench, BarChart3,
   Award, FileCheck, Leaf, Clock,
-  Binoculars, Feather, Zap, Building2,
+  Binoculars, Feather, Zap, Building2, Bird,
 };
 
 interface LucideIconProps extends LucideProps {

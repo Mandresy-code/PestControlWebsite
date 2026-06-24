@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | ESEIS Pest Control",
   },
   description:
-    "Société de lutte antiparasitaire professionnelle. Dératisation, désinsectisation, punaises de lit, désinfection. Techniciens Certibiocide. Astreinte 24/7.",
+    "Société de lutte antiparasitaire professionnelle. Dératisation, désinsectisation, punaises de lit, désinfection. Techniciens Certibiocide. Urgences 24h/24.",
   keywords: [
     "lutte antiparasitaire",
     "dératisation",
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
     siteName: "ESEIS Pest Control",
     title: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
     description:
-      "Lutte antiparasitaire professionnelle. IPM · Certibiocide · Astreinte 24/7.",
+      "Lutte antiparasitaire professionnelle. IPM · Certibiocide · Urgences 24h/24.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
-    description: "Lutte antiparasitaire professionnelle. IPM · Certibiocide · Astreinte 24/7.",
+    description: "Lutte antiparasitaire professionnelle. IPM · Certibiocide · Urgences 24h/24.",
   },
   robots: {
     index: true,
