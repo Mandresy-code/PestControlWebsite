@@ -527,7 +527,7 @@ export const contact = {
   address: "ESEIS Pest Control — Groupe BCR-i",
   zones: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
   emergencyPhone: "+33 6 XX XX XX XX",
-  hours: "Lun–Ven, 8h–19h",
+  hours: "Du lundi au vendredi, de 8h à 19h",
   emergencyHours: "Service d'urgence disponible 24h/24, 7j/7",
 };
 
