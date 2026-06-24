@@ -103,6 +103,7 @@ export default function ContactPage() {
                 Contactez-nous via le formulaire ou par email.
               </p>
               <p className="text-sm text-navy-400 mt-8">{contact.hours}</p>
+              <p className="text-sm text-terra-400 mt-4">{contact.emergencyHours}</p>
             </div>
 
             {/* Coordonnées */}
