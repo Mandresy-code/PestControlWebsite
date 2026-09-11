@@ -42,7 +42,7 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
       {/* Link */}
       <Link
         href={`/services/${service.slug}`}
-        className="inline-flex items-center gap-8 text-body font-medium text-navy-900 group-hover:text-navy-700 transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm"
+        className="inline-flex items-center gap-8 self-start px-16 py-10 rounded-pill bg-navy-900/6 text-body font-medium text-navy-900 group-hover:bg-navy-900 group-hover:text-white transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55"
         aria-label={`En savoir plus sur ${service.title}`}
       >
         En savoir plus

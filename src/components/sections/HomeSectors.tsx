@@ -72,7 +72,7 @@ export default function HomeSectors({ sectors }: HomeSectorsProps) {
               </div>
               <h3 className="text-h3 font-medium text-navy-900">{sector.title}</h3>
               <p className="text-body text-navy-600 leading-relaxed flex-1">{sector.description}</p>
-              <span className="inline-flex items-center gap-8 text-body font-medium text-navy-700 group-hover:text-navy-900 transition-colors duration-micro">
+              <span className="inline-flex items-center gap-8 self-start px-16 py-10 rounded-pill bg-navy-900/6 text-body font-medium text-navy-900 group-hover:bg-navy-900 group-hover:text-white transition-colors duration-micro">
                 En savoir plus <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-micro group-hover:translate-x-1" />
               </span>
             </Link>
