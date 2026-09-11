@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contact } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Mentions légales — ESEIS Pest Control",
@@ -52,10 +53,10 @@ export default function MentionsLegalesPage() {
             <p className="text-body text-navy-600 leading-relaxed">
               Pour toute question relative à ces mentions légales :{" "}
               <a
-                href="mailto:contact@eseis-pestcontrol.fr"
+                href={`mailto:${contact.email}`}
                 className="text-navy-900 underline underline-offset-2 hover:text-navy-700 transition-colors duration-micro"
               >
-                contact@eseis-pestcontrol.fr
+                {contact.email}
               </a>
             </p>
           </section>

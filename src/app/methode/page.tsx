@@ -36,14 +36,9 @@ export default async function MethodePage() {
 
       <section className="bg-cream section-padding">
         <div className="container-site max-w-[800px]">
-          <p className="text-body-lg text-navy-700 leading-[1.7] mb-32">
-            La lutte antiparasitaire traditionnelle traite les symptômes. L&apos;IPM traite les causes.
-            Avant toute intervention, nos techniciens identifient l&apos;espèce, comprennent le comportement,
-            localisent les voies d&apos;entrée et évaluent l&apos;environnement.
-          </p>
           <p className="text-body-lg text-navy-700 leading-[1.7]">
-            Le biocide n&apos;est jamais la première réponse. Quand il est nécessaire, il est choisi pour sa
-            précision, jamais pour sa facilité.
+            L&apos;IPM traite les causes, pas les symptômes : diagnostic d&apos;abord, méthodes les
+            moins invasives ensuite, biocide seulement en dernier recours et toujours avec précision.
           </p>
         </div>
       </section>
