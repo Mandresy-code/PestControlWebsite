@@ -2,9 +2,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
+import { contact } from "@/lib/content";
 
 const nav = [
   { label: "Services",  href: "/services" },
@@ -85,9 +86,12 @@ export default function Header() {
           >
             Espace client
           </Link>
-          <Link href="/contact">
-            <Button size="sm">Urgence - 48H</Button>
-          </Link>
+          <a href={`tel:${contact.emergencyPhoneHref}`}>
+            <Button size="sm">
+              <Phone size={14} strokeWidth={1.5} />
+              Urgence
+            </Button>
+          </a>
         </div>
 
         {/* Burger */}
@@ -129,9 +133,12 @@ export default function Header() {
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
             </Link>
-            <Link href="/contact" className="px-12">
-              <Button size="sm" className="w-full">Urgence - 48H</Button>
-            </Link>
+            <a href={`tel:${contact.emergencyPhoneHref}`} className="px-12">
+              <Button size="sm" className="w-full">
+                <Phone size={14} strokeWidth={1.5} />
+                Urgence · {contact.emergencyPhone}
+              </Button>
+            </a>
           </div>
         </div>
       )}

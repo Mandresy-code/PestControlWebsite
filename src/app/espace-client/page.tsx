@@ -4,6 +4,7 @@ import { ArrowRight, Eye, EyeOff } from "lucide-react";
 import { Field } from "@/components/ui/Field";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
+import { contact } from "@/lib/content";
 
 export default function EspaceClientPage() {
   const [email, setEmail]       = useState("");
@@ -57,7 +58,7 @@ export default function EspaceClientPage() {
             </Button>
 
             <a
-              href="mailto:contact@eseis-pestcontrol.fr?subject=Accès espace client"
+              href={`mailto:${contact.email}?subject=Accès espace client`}
               className="text-sm text-navy-400 hover:text-navy-700 text-center transition-colors duration-micro"
             >
               Problème de connexion ? Contactez-nous
@@ -66,7 +67,7 @@ export default function EspaceClientPage() {
               <p className="text-sm text-navy-500 text-center">
                 Pas encore de compte ?{" "}
                 <a
-                  href="mailto:contact@eseis-pestcontrol.fr?subject=Création compte espace client"
+                  href={`mailto:${contact.email}?subject=Création compte espace client`}
                   className="text-navy-700 hover:text-navy-900 underline underline-offset-2 transition-colors duration-micro"
                 >
                   Contactez-nous

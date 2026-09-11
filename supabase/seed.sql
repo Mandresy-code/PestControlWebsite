@@ -30,20 +30,20 @@ insert into services (slug, index, title, short_title, icon, description, long_d
   true, 3
 ),
 (
-  'desinfection', '04', 'Désinfection', 'Désinfection', 'Droplets',
+  'volants', '04', 'Nuisibles volants', 'Insectes volants', 'Wind',
+  'Gestion des guêpes, frelons (dont frelon asiatique), mouches et moustiques.',
+  'Nids de guêpes et frelons, prolifération de mouches en restauration, moustiques en espaces verts : chaque situation est différente. Nous intervenons en sécurité sur les nids à risque et déployons des solutions durables.',
+  array['Frelons asiatiques', 'Mouches', 'Moustiques', 'Guêpes'],
+  array['Localisation et évaluation du nid ou de la source', 'Traitement du nid (équipements de protection Niveau 3)', 'Pose de pièges préventifs adaptés', 'Surveillance et maintenance trimestrielle'],
+  true, 4
+),
+(
+  'desinfection', '05', 'Désinfection', 'Désinfection', 'Droplets',
   'Désinfection de surfaces et d''ambiances (ULV) pour les environnements à risque sanitaire élevé.',
   'Dans les cuisines professionnelles, blocs opératoires ou espaces de soins, la désinfection n''est pas une option. Nous intervenons avec des produits virucides, bactéricides et fongicides homologués, appliqués par nébulisation ULV ou traitement manuel de surface selon les protocoles HACCP.',
   array['ULV', 'HACCP', 'Virucide', 'Fongicide', 'Santé'],
   array['Évaluation du niveau de risque et sélection du biocide', 'Traitement ULV ou manuel selon la zone', 'Temps de contact et aération contrôlés', 'Attestation de désinfection fournie'],
-  false, 4
-),
-(
-  'volants', '05', 'Nuisibles volants', 'Insectes volants', 'Wind',
-  'Gestion des guêpes, frelons (dont frelon asiatique), mouches et moustiques en milieu professionnel.',
-  'Nids de guêpes et frelons, prolifération de mouches en restauration, moustiques en espaces verts : chaque situation est différente. Nous intervenons en sécurité sur les nids à risque et déployons des solutions durables.',
-  array['Frelons asiatiques', 'Mouches', 'Moustiques', 'Guêpes'],
-  array['Localisation et évaluation du nid ou de la source', 'Traitement du nid (équipements de protection Niveau 3)', 'Pose de pièges préventifs adaptés', 'Surveillance et maintenance trimestrielle'],
-  true, 5
+  false, 5
 ),
 (
   'prevention', '06', 'Prévention & audit', 'Prévention', 'ShieldCheck',
@@ -80,7 +80,11 @@ insert into sectors (slug, title, badge, icon, description, services, challenges
 ('particuliers', 'Particuliers', 'Particuliers', 'Home',
   'Maison, appartement, jardin : interventions rapides, sans produits agressifs.',
   array['deratisation','desinsectisation','punaises','volants'],
-  array['Présence d''enfants et animaux domestiques','Produits à faible impact en espace de vie','Délai d''intervention rapide','Explications claires et sans jargon'], 6)
+  array['Présence d''enfants et animaux domestiques','Produits à faible impact en espace de vie','Délai d''intervention rapide','Explications claires et sans jargon'], 6),
+('bureaux', 'Bureaux & tertiaire', 'Professionnels', 'Building2',
+  'Sièges sociaux, plateaux de bureaux, espaces partagés : interventions discrètes, en dehors des heures de présence.',
+  array['deratisation','desinsectisation','volants','prevention'],
+  array['Continuité d''activité pendant l''intervention','Discrétion vis-à-vis des collaborateurs et visiteurs','Espaces partagés et zones de restauration collective','Interventions hors horaires de bureau si besoin'], 7)
 on conflict (slug) do nothing;
 
 -- ─── pests ────────────────────────────────────────────────────────────────────

@@ -121,8 +121,27 @@ export const services: Service[] = [
     urgent: true,
   },
   {
-    slug: "desinfection",
+    slug: "volants",
     index: "04",
+    title: "Nuisibles volants",
+    shortTitle: "Insectes volants",
+    icon: "Wind",
+    description:
+      "Gestion des guêpes, frelons (dont frelon asiatique), mouches et moustiques.",
+    longDescription:
+      "Nids de guêpes et frelons, prolifération de mouches en restauration, moustiques en espaces verts : chaque situation est différente. Nous intervenons en sécurité sur les nids à risque et déployons des solutions durables (pièges à phéromones, moustiquaires, UV) pour les espaces récurrents.",
+    chips: ["Frelons asiatiques", "Mouches", "Moustiques", "Guêpes"],
+    methods: [
+      "Localisation et évaluation du nid ou de la source",
+      "Traitement du nid (équipements de protection Niveau 3)",
+      "Pose de pièges préventifs adaptés",
+      "Surveillance et maintenance trimestrielle",
+    ],
+    urgent: true,
+  },
+  {
+    slug: "desinfection",
+    index: "05",
     title: "Désinfection",
     shortTitle: "Désinfection",
     icon: "Droplets",
@@ -137,25 +156,6 @@ export const services: Service[] = [
       "Temps de contact et aération contrôlés",
       "Attestation de désinfection fournie",
     ],
-  },
-  {
-    slug: "volants",
-    index: "05",
-    title: "Nuisibles volants",
-    shortTitle: "Insectes volants",
-    icon: "Wind",
-    description:
-      "Gestion des guêpes, frelons (dont frelon asiatique), mouches et moustiques en milieu professionnel.",
-    longDescription:
-      "Nids de guêpes et frelons, prolifération de mouches en restauration, moustiques en espaces verts : chaque situation est différente. Nous intervenons en sécurité sur les nids à risque et déployons des solutions durables (pièges à phéromones, moustiquaires, UV) pour les espaces récurrents.",
-    chips: ["Frelons asiatiques", "Mouches", "Moustiques", "Guêpes"],
-    methods: [
-      "Localisation et évaluation du nid ou de la source",
-      "Traitement du nid (équipements de protection Niveau 3)",
-      "Pose de pièges préventifs adaptés",
-      "Surveillance et maintenance trimestrielle",
-    ],
-    urgent: true,
   },
   {
     slug: "depigeonnage",
@@ -288,6 +288,21 @@ export const sectors: Sector[] = [
       "Explications claires, sans termes techniques inutiles",
     ],
   },
+  {
+    slug: "bureaux",
+    title: "Bureaux & tertiaire",
+    badge: "Professionnels",
+    icon: "Building2",
+    description:
+      "Sièges sociaux, plateaux de bureaux, espaces partagés : interventions discrètes, en dehors des heures de présence.",
+    services: ["deratisation", "desinsectisation", "volants", "prevention"],
+    challenges: [
+      "Continuité d'activité pendant l'intervention",
+      "Discrétion vis-à-vis des collaborateurs et visiteurs",
+      "Espaces partagés et zones de restauration collective",
+      "Interventions hors horaires de bureau si besoin",
+    ],
+  },
 ];
 
 // ─── Pests (nuisibles) ─────────────────────────────────────────────────────────
@@ -417,7 +432,7 @@ export const stats: Stat[] = [
   { value: "48h", label: "Délai d'intervention moyen", mono: true },
   { value: "100%", label: "Techniciens certifiés Certibiocide", mono: true },
   { value: "24/7", label: "Service d'urgence disponible en continu", mono: true },
-  { value: "12", label: "Secteurs d'activité couverts", mono: true },
+  { value: String(sectors.length), label: "Secteurs d'activité couverts", mono: true },
 ];
 
 // ─── Proofs ────────────────────────────────────────────────────────────────────
@@ -501,6 +516,13 @@ export const wizardPlaces = [
   { id: "autre",       label: "Autre",                 icon: "Building2" },
 ] as const;
 
+export const wizardSituations = [
+  { id: "premiere",  label: "Première apparition",  sub: "Je constate le problème pour la première fois." },
+  { id: "recurrent", label: "Problème récurrent",   sub: "Le nuisible revient régulièrement." },
+  { id: "audit",     label: "Audit imminent",        sub: "J'ai un contrôle IFS, BRC ou sanitaire à venir." },
+  { id: "preventif", label: "Démarche préventive",   sub: "Pas d'infestation active : je veux prévenir." },
+] as const;
+
 export const wizardSigns: Record<string, { id: string; label: string; pestId: string }[]> = {
   interieur: [
     { id: "crottes",   label: "Crottes ou déjections",            pestId: "rats" },
@@ -522,11 +544,13 @@ export const wizardSigns: Record<string, { id: string; label: string; pestId: st
 // ─── Contact ───────────────────────────────────────────────────────────────────
 
 export const contact = {
-  email: "contact@eseis-pestcontrol.fr",
-  phone: "+33 1 XX XX XX XX",
-  address: "ESEIS Pest Control — Groupe BCR-i",
+  // Domaine du site (eseis-pestcontrol.fr) ≠ domaine email (eseis.fr).
+  email: "cockpitgrdf@eseis.fr",
+  phone: "+33 1 XX XX XX XX", // fixe général — non communiqué, hors périmètre urgence
+  address: "29 Bd du Général Delambre, 95870 Bezons",
   zones: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
-  emergencyPhone: "+33 6 XX XX XX XX",
+  emergencyPhone: "06 38 96 93 32",
+  emergencyPhoneHref: "+33638969332",
   hours: "Du lundi au vendredi, de 8h à 19h",
   emergencyHours: "Service d'urgence disponible 24h/24, 7j/7",
 };
@@ -540,3 +564,16 @@ export const certifications = [
   "HACCP",
   "ISO 14001",
 ];
+
+// ─── Témoignages clients ───────────────────────────────────────────────────────
+// En attente du client : citations réelles + autorisation de publication (compte-rendu
+// du 02/09/2026, section 5). Le carrousel (components/sections/Testimonials.tsx) ne
+// s'affiche que si ce tableau n'est pas vide — ne pas y mettre de citation inventée.
+
+export type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
+};
+
+export const testimonials: Testimonial[] = [];

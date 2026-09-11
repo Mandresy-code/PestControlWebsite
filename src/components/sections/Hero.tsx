@@ -1,14 +1,16 @@
 "use client";
 import Link from "next/link";
-import { ArrowRight, Shield, Clock, MapPin } from "lucide-react";
+import { ArrowRight, Shield, Clock, MapPin, Building2 } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
+import { contact } from "@/lib/content";
 
 
 const meta = [
-  { icon: Shield, label: "Certibiocide" },
-  { icon: Clock,  label: "Urgences 24h/24" },
-  { icon: MapPin, label: "Zones couvertes" },
+  { icon: Shield,    label: "Certibiocide" },
+  { icon: Clock,     label: "Urgences 24h/24" },
+  { icon: MapPin,    label: "Zones couvertes" },
+  { icon: Building2, label: `Siège — ${contact.address}` },
 ];
 
 interface HeroProps {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contact } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité — ESEIS Pest Control",
@@ -53,10 +54,10 @@ export default function ConfidentialitePage() {
               d&apos;un droit d&apos;accès, de rectification, d&apos;effacement et de portabilité de vos données.
               Pour exercer ces droits, contactez-nous à{" "}
               <a
-                href="mailto:contact@eseis-pestcontrol.fr"
+                href={`mailto:${contact.email}`}
                 className="text-navy-900 underline underline-offset-2 hover:text-navy-700 transition-colors duration-micro"
               >
-                contact@eseis-pestcontrol.fr
+                {contact.email}
               </a>
               .
             </p>

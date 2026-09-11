@@ -5,7 +5,7 @@ import { Check, AlertTriangle, ArrowRight, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import { Field, TextareaField } from "@/components/ui/Field";
-import { wizardPlaces } from "@/lib/content";
+import { wizardPlaces, wizardSituations } from "@/lib/content";
 import type { Pest } from "@/lib/content";
 
 // ─── Types ──────────────────────────────────────────────────────────────────────
@@ -70,12 +70,7 @@ const stepLabels: Record<Step, string> = {
   1: "Lieu", 2: "Nuisible", 3: "Situation", 4: "Coordonnées", 5: "Confirmation",
 };
 
-const situations: { id: Situation; label: string; sub: string }[] = [
-  { id: "premiere",  label: "Première apparition",  sub: "Je constate le problème pour la première fois." },
-  { id: "recurrent", label: "Problème récurrent",   sub: "Le nuisible revient régulièrement." },
-  { id: "audit",     label: "Audit imminent",        sub: "J'ai un contrôle IFS, BRC ou sanitaire à venir." },
-  { id: "preventif", label: "Démarche préventive",   sub: "Pas d'infestation active : je veux prévenir." },
-];
+const situations = wizardSituations;
 
 // ─── Inner wizard ────────────────────────────────────────────────────────────────
 

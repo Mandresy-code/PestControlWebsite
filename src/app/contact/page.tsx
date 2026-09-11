@@ -1,21 +1,65 @@
 "use client";
 import { useState } from "react";
-import { Mail, MapPin, Clock, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Clock, Phone, Paperclip, X, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { Field, TextareaField } from "@/components/ui/Field";
 import { contact } from "@/lib/content";
 
+const MAX_PHOTO_BYTES = 5 * 1024 * 1024; // 5 Mo
+
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve((reader.result as string).split(",")[1] ?? "");
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 export default function ContactPage() {
-  const [sent, setSent]     = useState(false);
+  const [sent, setSent]       = useState(false);
   const [loading, setLoading] = useState(false);
-  const [form, setForm]     = useState({ nom: "", email: "", tel: "", message: "" });
+  const [error, setError]     = useState("");
+  const [form, setForm]       = useState({ nom: "", email: "", tel: "", message: "" });
+  const [photo, setPhoto]     = useState<File | null>(null);
+  const [photoError, setPhotoError] = useState("");
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0] ?? null;
+    setPhotoError("");
+    if (file && file.size > MAX_PHOTO_BYTES) {
+      setPhotoError("La photo dépasse 5 Mo. Choisissez un fichier plus léger.");
+      setPhoto(null);
+      e.target.value = "";
+      return;
+    }
+    setPhoto(file);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError("");
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 800));
-    setLoading(false);
-    setSent(true);
+    try {
+      const photoPayload = photo
+        ? { filename: photo.name, content: await fileToBase64(photo) }
+        : null;
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, photo: photoPayload }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Erreur lors de l'envoi.");
+      }
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Erreur réseau. Veuillez réessayer.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -79,6 +123,36 @@ export default function ContactPage() {
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   placeholder="Décrivez votre situation, votre type d'établissement, le nuisible observé…"
                 />
+
+                <div className="flex flex-col gap-8">
+                  <label className="text-body font-medium text-navy-800">
+                    Photo <span className="text-navy-400 font-normal">(optionnel)</span>
+                  </label>
+                  {photo ? (
+                    <div className="flex items-center gap-12 p-12 rounded-md border border-navy-900/15 bg-paper">
+                      <Paperclip size={16} strokeWidth={1.5} className="text-navy-500 shrink-0" />
+                      <span className="text-sm text-navy-700 truncate flex-1">{photo.name}</span>
+                      <button
+                        type="button"
+                        onClick={() => setPhoto(null)}
+                        aria-label="Retirer la photo"
+                        className="text-navy-400 hover:text-danger transition-colors duration-micro shrink-0"
+                      >
+                        <X size={16} strokeWidth={1.5} />
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="flex items-center gap-10 p-12 rounded-md border border-dashed border-navy-900/20 hover:border-signal-500 text-sm text-navy-500 cursor-pointer transition-colors duration-micro">
+                      <Paperclip size={16} strokeWidth={1.5} className="shrink-0" />
+                      Joindre une photo (max 5 Mo)
+                      <input type="file" accept="image/*" onChange={handlePhotoChange} className="hidden" />
+                    </label>
+                  )}
+                  {photoError && <p className="text-sm text-danger" role="alert">{photoError}</p>}
+                </div>
+
+                {error && <p className="text-sm text-danger" role="alert">{error}</p>}
+
                 <Button
                   type="submit"
                   disabled={loading || !form.nom || !form.email || !form.message}
@@ -99,10 +173,14 @@ export default function ContactPage() {
               <p className="text-body text-navy-200 mb-20">
                 Nid de frelons, infestation soudaine avant inspection : notre service d&apos;urgence répond 7j/7.
               </p>
-              <p className="text-body font-medium text-white">
-                Contactez-nous via le formulaire ou par email.
-              </p>
-              <p className="text-sm text-navy-400 mt-8">{contact.hours}</p>
+              <a
+                href={`tel:${contact.emergencyPhoneHref}`}
+                className="inline-flex items-center gap-10 text-h3 font-medium text-white hover:text-signal-300 transition-colors duration-micro"
+              >
+                <Phone size={20} strokeWidth={1.5} className="text-signal-400 shrink-0" />
+                {contact.emergencyPhone}
+              </a>
+              <p className="text-sm text-navy-400 mt-16">{contact.hours}</p>
               <p className="text-sm text-terra-400 mt-4">{contact.emergencyHours}</p>
             </div>
 
@@ -115,6 +193,13 @@ export default function ContactPage() {
                   <a href={`mailto:${contact.email}`} className="text-body font-medium text-navy-900 hover:text-navy-700 transition-colors duration-micro">
                     {contact.email}
                   </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-16">
+                <MapPin size={18} strokeWidth={1.5} className="text-signal-500 shrink-0 mt-1" />
+                <div>
+                  <p className="text-sm text-navy-400 mb-4">Siège</p>
+                  <p className="text-body text-navy-700">{contact.address}</p>
                 </div>
               </div>
               <div className="flex items-start gap-16">
