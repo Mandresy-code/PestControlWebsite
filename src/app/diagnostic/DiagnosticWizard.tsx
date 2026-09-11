@@ -1,5 +1,5 @@
 "use client";
-import { useReducer, useEffect, Suspense } from "react";
+import { useReducer, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Check, AlertTriangle, ArrowRight, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -77,11 +77,20 @@ const situations = wizardSituations;
 function WizardInner({ pests }: { pests: Pest[] }) {
   const searchParams = useSearchParams();
   const [state, dispatch] = useReducer(reducer, initial);
+  const wizardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const pestParam = searchParams.get("pest");
     if (pestParam) dispatch({ type: "PREFILL_PEST", pest: pestParam });
   }, [searchParams]);
+
+  // Le formulaire est long sur mobile : sans ça, l'utilisateur reste scrollé
+  // là où était le bouton "Envoyer" et ne voit jamais la confirmation.
+  useEffect(() => {
+    if (state.submitted) {
+      wizardRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [state.submitted]);
 
   const isUrgent = (pestId: string) =>
     pests.find((p) => p.id === pestId)?.urgent ?? false;
@@ -108,12 +117,18 @@ function WizardInner({ pests }: { pests: Pest[] }) {
     }
   }
 
-  if (state.submitted) return <Confirmation state={state} pests={pests} />;
+  if (state.submitted) {
+    return (
+      <div ref={wizardRef} className="scroll-mt-[130px]">
+        <Confirmation state={state} pests={pests} />
+      </div>
+    );
+  }
 
   const urgent = isUrgent(state.pest);
 
   return (
-    <div>
+    <div ref={wizardRef} className="scroll-mt-[130px]">
       {/* Barre de progression */}
       <div className="flex gap-8 mb-40" role="list" aria-label="Étapes du diagnostic">
         {([1, 2, 3, 4, 5] as Step[]).map((s) => (

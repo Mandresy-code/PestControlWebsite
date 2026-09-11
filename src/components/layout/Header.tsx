@@ -29,6 +29,12 @@ export default function Header() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  // Empêche le scroll de la page derrière le menu mobile ouvert
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
     <header
       className={cn(
@@ -106,11 +112,11 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile nav — couvre tout l'écran restant, scrolle en interne si besoin */}
       {open && (
         <div
           id="mobile-nav"
-          className="md:hidden bg-cream/95 backdrop-blur-md border-t border-navy-900/8 px-24 py-24 flex flex-col gap-4"
+          className="md:hidden fixed inset-x-0 top-[112px] h-[calc(100dvh-112px)] overflow-y-auto bg-cream border-t border-navy-900/8 px-24 py-24 flex flex-col gap-4"
         >
           {nav.map(({ label, href }) => {
             const active = pathname === href || pathname.startsWith(href + "/");
