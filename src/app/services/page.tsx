@@ -17,7 +17,7 @@ export default async function ServicesPage() {
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Services</p>
           <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[18ch]">
-            Six interventions, une seule exigence.
+            Une réponse ciblée pour chaque nuisible.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[60ch] leading-relaxed">
             Chaque nuisible, chaque secteur, chaque bâtiment a ses spécificités.
