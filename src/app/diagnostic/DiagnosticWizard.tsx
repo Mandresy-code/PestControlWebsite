@@ -222,11 +222,12 @@ function WizardInner({ pests }: { pests: Pest[] }) {
       {/* Étape 5 — Récapitulatif */}
       {state.step === 5 && (
         <StepCard title="Récapitulatif">
-          <div className="space-y-16 rounded-md bg-navy-50 p-24 mb-32">
+          <div className="rounded-md bg-navy-50 p-24 mb-32">
             <RecapRow label="Lieu"       value={wizardPlaces.find((p) => p.id === state.place)?.label ?? state.place} />
             <RecapRow label="Nuisible"   value={pests.find((p) => p.id === state.pest)?.name ?? state.pest} />
             <RecapRow label="Situation"  value={situations.find((s) => s.id === state.situation)?.label ?? state.situation} />
             <RecapRow label="Nom"        value={state.nom} />
+            {state.etablissement && <RecapRow label="Établissement" value={state.etablissement} />}
             <RecapRow label="Email"      value={state.email} />
             {state.tel   && <RecapRow label="Téléphone"    value={state.tel} />}
             {state.cp    && <RecapRow label="Code postal"  value={state.cp} />}
@@ -316,9 +317,9 @@ function NavRow({ onPrev, onNext, nextDisabled }: {
 
 function RecapRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex gap-16 text-body">
-      <span className="text-navy-500 w-32 shrink-0">{label}</span>
-      <span className="text-navy-900 font-medium">{value}</span>
+    <div className="flex flex-col gap-2 py-8 border-b border-navy-900/6 last:border-0">
+      <span className="text-sm text-navy-500">{label}</span>
+      <span className="text-body text-navy-900 font-medium break-words">{value}</span>
     </div>
   );
 }
