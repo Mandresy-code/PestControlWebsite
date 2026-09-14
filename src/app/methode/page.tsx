@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Search, ClipboardList, Wrench, BarChart3 } from "lucide-react";
 import SectionHead from "@/components/ui/SectionHead";
 import FinalCTA from "@/components/sections/FinalCTA";
-import ProofsStats from "@/components/sections/ProofsStats";
-import { getMethodSteps, getStats, getProofs } from "@/lib/db";
+import { getMethodSteps } from "@/lib/db";
 import { certifications } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -16,9 +15,7 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?:
 };
 
 export default async function MethodePage() {
-  const [methodSteps, stats, proofs] = await Promise.all([
-    getMethodSteps(), getStats(), getProofs(),
-  ]);
+  const methodSteps = await getMethodSteps();
 
   return (
     <>
@@ -67,8 +64,6 @@ export default async function MethodePage() {
           </div>
         </div>
       </section>
-
-      <ProofsStats proofs={proofs} stats={stats} />
 
       <section className="bg-cream section-padding">
         <div className="container-site">
