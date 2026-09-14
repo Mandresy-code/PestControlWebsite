@@ -29,10 +29,22 @@ export default function Header() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  // Empêche le scroll de la page derrière le menu mobile ouvert
+  // Empêche le scroll de la page derrière le menu mobile ouvert.
+  // `overflow: hidden` seul ne bloque pas le scroll sur iOS Safari — il faut
+  // figer le body en position fixed et restaurer la position au relâchement.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!open) return;
+    const scrollY = window.scrollY;
+    const { body } = document;
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    return () => {
+      body.style.position = "";
+      body.style.top = "";
+      body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
   }, [open]);
 
   return (

@@ -1,6 +1,5 @@
 "use client";
-import { useReducer, useEffect, useRef, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useReducer, useEffect, useRef } from "react";
 import { Check, AlertTriangle, ArrowRight, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
@@ -75,14 +74,16 @@ const situations = wizardSituations;
 // ─── Inner wizard ────────────────────────────────────────────────────────────────
 
 function WizardInner({ pests }: { pests: Pest[] }) {
-  const searchParams = useSearchParams();
   const [state, dispatch] = useReducer(reducer, initial);
   const wizardRef = useRef<HTMLDivElement>(null);
 
+  // Lecture directe de l'URL plutôt que useSearchParams() : évite la
+  // Suspense boundary (et son fallback qui pouvait rester bloqué sur
+  // connexion lente) pour une simple préselection de nuisible.
   useEffect(() => {
-    const pestParam = searchParams.get("pest");
+    const pestParam = new URLSearchParams(window.location.search).get("pest");
     if (pestParam) dispatch({ type: "PREFILL_PEST", pest: pestParam });
-  }, [searchParams]);
+  }, []);
 
   // Le formulaire est long sur mobile : sans ça, l'utilisateur reste scrollé
   // là où était le bouton "Envoyer" et ne voit jamais la confirmation.
@@ -341,12 +342,8 @@ function Confirmation({ state, pests }: { state: FormState; pests: Pest[] }) {
   );
 }
 
-// ─── Export public — Suspense pour useSearchParams ────────────────────────────────
+// ─── Export public ──────────────────────────────────────────────────────────────
 
 export default function DiagnosticWizard({ pests }: { pests: Pest[] }) {
-  return (
-    <Suspense fallback={<div className="h-40 animate-pulse bg-navy-100 rounded-md" />}>
-      <WizardInner pests={pests} />
-    </Suspense>
-  );
+  return <WizardInner pests={pests} />;
 }
