@@ -1,17 +1,8 @@
 "use client";
 import Link from "next/link";
-import { ArrowRight, Shield, Clock, MapPin, Building2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
-import { contact } from "@/lib/content";
-
-
-const meta = [
-  { icon: Shield,    label: "Certibiocide" },
-  { icon: Clock,     label: "Urgences 24h/24" },
-  { icon: MapPin,    label: "Zones couvertes" },
-  { icon: Building2, label: `Siège — ${contact.address}` },
-];
 
 interface HeroProps {
   videoMp4?:  string | null;
@@ -97,15 +88,6 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
               Notre méthode
             </Button>
           </Link>
-        </div>
-
-        <div className="flex flex-wrap gap-32 border-t border-white/10 pt-32">
-          {meta.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-10 text-navy-300">
-              <Icon size={16} strokeWidth={1.5} className="text-signal-400 shrink-0" />
-              <span className="font-mono text-mono">{label}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

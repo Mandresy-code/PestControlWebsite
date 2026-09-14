@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Mail, MapPin, Clock, Phone, Paperclip, X, ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { Field, TextareaField } from "@/components/ui/Field";
@@ -23,6 +23,13 @@ export default function ContactPage() {
   const [form, setForm]       = useState({ nom: "", email: "", tel: "", message: "" });
   const [photo, setPhoto]     = useState<File | null>(null);
   const [photoError, setPhotoError] = useState("");
+  const formRef = useRef<HTMLDivElement>(null);
+
+  // Le formulaire est long sur mobile : sans ça, l'utilisateur reste scrollé
+  // là où était le bouton "Envoyer" et ne voit jamais la confirmation.
+  useEffect(() => {
+    if (sent) formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [sent]);
 
   function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0] ?? null;
@@ -81,7 +88,7 @@ export default function ContactPage() {
       <div className="container-site section-padding">
         <div className="grid md:grid-cols-[1fr_380px] gap-72">
           {/* Form */}
-          <div>
+          <div ref={formRef} className="scroll-mt-[130px]">
             <h2 className="text-h3 font-medium text-navy-900 mb-32">Être rappelé</h2>
             {sent ? (
               <div className="p-32 rounded-lg bg-signal-500/10 border border-signal-500/20">

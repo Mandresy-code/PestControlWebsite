@@ -29,6 +29,12 @@ export default function Header() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  // Empêche le scroll de la page derrière le menu mobile ouvert
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
     <header
       className={cn(
@@ -55,7 +61,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-4 flex-1" aria-label="Navigation principale">
+        <nav className="hidden md:flex items-center gap-2 lg:gap-4 flex-1" aria-label="Navigation principale">
           {nav.map(({ label, href }) => {
             const active = pathname === href || pathname.startsWith(href + "/");
             return (
@@ -63,7 +69,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 className={cn(
-                  "relative px-12 py-8 text-body font-medium transition-colors duration-micro ease-brand rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55",
+                  "relative px-8 lg:px-12 py-8 text-body font-medium whitespace-nowrap transition-colors duration-micro ease-brand rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55",
                   active
                     ? "text-navy-900"
                     : "text-navy-600 hover:text-navy-900"
@@ -79,12 +85,19 @@ export default function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="hidden md:flex items-center gap-16 ml-auto">
-          <Link
-            href="/espace-client"
-            className="text-body text-navy-600 hover:text-navy-900 transition-colors duration-micro ease-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm px-4"
+        <div className="hidden md:flex items-center gap-12 lg:gap-20 ml-auto">
+          <a
+            href={`tel:${contact.emergencyPhoneHref}`}
+            className="hidden xl:flex items-center gap-8 font-mono font-medium text-navy-900 hover:text-terra-600 transition-colors duration-micro whitespace-nowrap"
           >
-            Espace client
+            <Phone size={16} strokeWidth={1.5} className="text-terra-500 shrink-0" />
+            {contact.emergencyPhone}
+          </a>
+          <Link href="/diagnostic">
+            <Button variant="outline" size="sm" className="whitespace-nowrap">
+              <span className="lg:hidden">Diagnostic</span>
+              <span className="hidden lg:inline">Demander un diagnostic</span>
+            </Button>
           </Link>
           <a href={`tel:${contact.emergencyPhoneHref}`}>
             <Button size="sm">
@@ -106,11 +119,11 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile nav — couvre tout l'écran restant, scrolle en interne si besoin */}
       {open && (
         <div
           id="mobile-nav"
-          className="md:hidden bg-cream/95 backdrop-blur-md border-t border-navy-900/8 px-24 py-24 flex flex-col gap-4"
+          className="md:hidden fixed inset-x-0 top-[112px] h-[calc(100dvh-112px)] overflow-y-auto bg-cream border-t border-navy-900/8 px-24 py-24 flex flex-col gap-4"
         >
           {nav.map(({ label, href }) => {
             const active = pathname === href || pathname.startsWith(href + "/");
@@ -132,6 +145,11 @@ export default function Header() {
           <div className="pt-16 flex flex-col gap-12 border-t border-navy-900/8">
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
+            </Link>
+            <Link href="/diagnostic" className="px-12">
+              <Button variant="outline" size="sm" className="w-full">
+                Demander un diagnostic
+              </Button>
             </Link>
             <a href={`tel:${contact.emergencyPhoneHref}`} className="px-12">
               <Button size="sm" className="w-full">

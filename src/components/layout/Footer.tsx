@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Arc from "@/components/ui/Arc";
 import { contact, certifications } from "@/lib/content";
 
@@ -100,6 +100,15 @@ export default function Footer() {
             <ul className="flex flex-col gap-16">
               <li>
                 <a
+                  href={`tel:${contact.emergencyPhoneHref}`}
+                  className="flex items-start gap-10 text-body font-medium text-white hover:text-signal-300 transition-colors duration-micro"
+                >
+                  <Phone size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-signal-500" />
+                  {contact.emergencyPhone}
+                </a>
+              </li>
+              <li>
+                <a
                   href={`mailto:${contact.email}`}
                   className="flex items-start gap-10 text-body text-navy-300 hover:text-white transition-colors duration-micro"
                 >
@@ -109,7 +118,10 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-10 text-body text-navy-400">
                 <MapPin size={16} strokeWidth={1.5} className="mt-1 shrink-0 text-signal-500" />
-                <span>{contact.zones.join(" · ")}</span>
+                <span className="flex flex-col gap-4">
+                  <span>{contact.address}</span>
+                  <span>{contact.zones.join(" · ")}</span>
+                </span>
               </li>
             </ul>
           </div>

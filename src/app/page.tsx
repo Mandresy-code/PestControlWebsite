@@ -65,7 +65,7 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-24 mb-56">
             <SectionHead
               eyebrow="Services"
-              title="Six interventions, une seule exigence."
+              title="Une réponse ciblée pour chaque nuisible."
               description="Du rongeur au nuisible volant, du site industriel à la résidence : nos protocoles s'adaptent à votre contexte, pas l'inverse."
               id="services-title"
             />

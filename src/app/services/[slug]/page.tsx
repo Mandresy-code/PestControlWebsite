@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { getServices, getService, getServiceSlugs } from "@/lib/db";
-import Chip from "@/components/ui/Chip";
 import Button from "@/components/ui/Button";
 import FinalCTA from "@/components/sections/FinalCTA";
 
@@ -39,11 +38,10 @@ export default async function ServiceDetailPage(
           </Link>
           <div className="flex items-start justify-between gap-24 flex-wrap">
             <div>
-              <p className="font-mono text-mono text-navy-400 mb-12">{service.index} / 06</p>
+              <p className="font-mono text-mono text-navy-400 mb-12">
+                {service.index} / {String(allServices.length).padStart(2, "0")}
+              </p>
               <h1 className="text-h1 font-medium text-white mb-20">{service.title}</h1>
-              <div className="flex flex-wrap gap-8 mb-24">
-                {service.chips.map((chip) => <Chip key={chip} onDark>{chip}</Chip>)}
-              </div>
             </div>
             <Link href={`/diagnostic?pest=${service.slug}`}>
               <Button variant="primary" onDark>

@@ -24,3 +24,9 @@ update services set index = '04', sort_order = 4,
   where slug = 'volants';
 update services set index = '05', sort_order = 5
   where slug = 'desinfection';
+
+-- ─── 4. Bug préexistant : "Prévention & audit" et "Dépigeonnage" partagent
+--        tous les deux l'index 06 en prod (doublon visible sur la page
+--        d'accueil) — non lié aux changements ci-dessus ────────────────────
+update services set index = '07', sort_order = 7
+  where slug = 'prevention';

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Service } from "@/lib/content";
-import Chip from "./Chip";
 import LucideIcon from "./LucideIcon";
 import { cn } from "@/lib/utils";
 
@@ -30,13 +29,6 @@ export default function ServiceCard({ service, className }: ServiceCardProps) {
       <div className="flex flex-col gap-12 flex-1">
         <h3 className="text-h3 font-medium text-navy-900">{service.title}</h3>
         <p className="text-body text-navy-600 leading-relaxed">{service.description}</p>
-      </div>
-
-      {/* Chips */}
-      <div className="flex flex-wrap gap-8">
-        {service.chips.slice(0, 3).map((chip) => (
-          <Chip key={chip}>{chip}</Chip>
-        ))}
       </div>
 
       {/* Link */}

@@ -58,17 +58,17 @@ export default function PestSelector() {
   }
 
   return (
-    <section className="bg-cream-2 section-padding">
+    <section className="bg-cream-2 section-padding border-t-2 border-signal-500/40">
       <div className="container-site">
         <div className="grid md:grid-cols-2 gap-56 items-start">
           <SectionHead
             eyebrow="Identifier"
-            title="Pas sûr de ce que vous avez ?"
+            title="Un doute sur le nuisible ?"
             description="Répondez à deux questions. Nous identifions le nuisible et vous orientons vers la bonne solution."
           />
 
           {/* Wizard card */}
-          <div className="bg-paper rounded-lg shadow-2 p-32 md:p-40">
+          <div className="bg-paper rounded-lg shadow-3 p-32 md:p-40">
             {step === "place" && (
               <div>
                 <p className="text-body-lg font-medium text-navy-900 mb-24">
