@@ -25,7 +25,7 @@ export default async function MethodePage() {
       <div className="bg-navy-900 pt-[152px] pb-72">
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Méthode</p>
-          <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[20ch]">
+          <h1 className="text-h1 font-medium text-white tracking-tight mb-20">
             IPM : la lutte qui comprend avant d&apos;agir.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[58ch] leading-relaxed">

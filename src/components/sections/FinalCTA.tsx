@@ -17,7 +17,7 @@ export default function FinalCTA() {
           Prochaine étape
         </p>
         <h2 className="text-h1 font-medium text-white tracking-tight mb-24">
-          Un diagnostic,<br />pas un devis au téléphone.
+          Un diagnostic, pas un devis au téléphone.
         </h2>
         <p className="text-body-lg text-navy-200 leading-relaxed mb-40 max-w-[52ch] mx-auto">
           Chaque situation est différente. Nos techniciens se déplacent pour évaluer

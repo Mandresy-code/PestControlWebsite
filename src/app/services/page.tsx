@@ -16,7 +16,7 @@ export default async function ServicesPage() {
       <div className="bg-navy-900 pt-[152px] pb-72">
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Services</p>
-          <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[18ch]">
+          <h1 className="text-h1 font-medium text-white tracking-tight mb-20">
             Une réponse ciblée pour chaque nuisible.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[60ch] leading-relaxed">

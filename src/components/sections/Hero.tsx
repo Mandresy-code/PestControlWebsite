@@ -66,8 +66,8 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
       <div className="relative z-20 container-site pb-72 md:pb-96 pt-[152px]">
 
 
-        <h1 className="text-display font-medium text-white tracking-tight max-w-[18ch] mb-24">
-          Votre tranquillité,<br />notre expertise.
+        <h1 className="text-display font-medium text-white tracking-tight max-w-[26ch] mb-24">
+          Votre tranquillité, notre expertise.
         </h1>
 
         <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed mb-40">

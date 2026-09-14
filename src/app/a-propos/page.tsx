@@ -25,8 +25,8 @@ export default function AProposPage() {
         <Arc size={480} className="absolute -right-40 -top-40 text-white" opacity={0.05} />
         <div className="relative container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">À propos</p>
-          <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[20ch]">
-            ESEIS Pest Control,<br />groupe BCR-i.
+          <h1 className="text-h1 font-medium text-white tracking-tight mb-20">
+            ESEIS Pest Control, groupe BCR-i.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[56ch] leading-relaxed">
             «&nbsp;Faire grandir les hommes, faire grandir les entreprises.&nbsp;» Cette devise du
