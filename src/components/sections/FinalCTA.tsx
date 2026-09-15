@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
@@ -17,24 +16,20 @@ export default function FinalCTA() {
           Prochaine étape
         </p>
         <h2 className="text-h1 font-medium text-white tracking-tight mb-24">
-          Un diagnostic,<br />pas un devis au téléphone.
+          Un diagnostic.
         </h2>
         <p className="text-body-lg text-navy-200 leading-relaxed mb-40 max-w-[52ch] mx-auto">
           Chaque situation est différente. Nos techniciens se déplacent pour évaluer
           avant de proposer, sans engagement, sous 48 h ouvrées.
         </p>
         <div className="flex flex-wrap gap-16 justify-center mb-40">
-          <Link href="/diagnostic">
-            <Button variant="primary" size="lg" onDark>
-              Demander un diagnostic
-              <ArrowRight size={18} strokeWidth={1.5} />
-            </Button>
-          </Link>
-          <Link href="/contact">
-            <Button variant="outline" size="lg" onDark>
-              Être rappelé
-            </Button>
-          </Link>
+          <Button href="/diagnostic" variant="primary" size="lg" onDark>
+            Demander un diagnostic
+            <ArrowRight size={18} strokeWidth={1.5} />
+          </Button>
+          <Button href="/contact" variant="outline" size="lg" onDark>
+            Être rappelé
+          </Button>
         </div>
       </div>
     </section>

@@ -29,7 +29,7 @@ export default function HomeSectors({ sectors }: HomeSectorsProps) {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-24 mb-40">
           <SectionHead
             eyebrow="Secteurs"
-            title="Votre activité a ses contraintes. Nos protocoles aussi."
+            title="Le bon protocole, pour le bon secteur."
             id="secteurs-title"
           />
           <Link href="/secteurs" className="inline-flex items-center gap-8 text-body font-medium text-navy-700 hover:text-navy-900 transition-colors duration-micro ease-brand shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal-500/55 rounded-sm">

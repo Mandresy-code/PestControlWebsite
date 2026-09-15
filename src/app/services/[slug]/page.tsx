@@ -43,11 +43,9 @@ export default async function ServiceDetailPage(
               </p>
               <h1 className="text-h1 font-medium text-white mb-20">{service.title}</h1>
             </div>
-            <Link href={`/diagnostic?pest=${service.slug}`}>
-              <Button variant="primary" onDark>
-                Demander une intervention <ArrowRight size={16} strokeWidth={1.5} />
-              </Button>
-            </Link>
+            <Button href={`/diagnostic?pest=${service.slug}`} variant="primary" onDark>
+              Demander une intervention <ArrowRight size={16} strokeWidth={1.5} />
+            </Button>
           </div>
         </div>
       </div>
@@ -91,9 +89,7 @@ export default async function ServiceDetailPage(
                     </li>
                   ))}
                 </ul>
-                <Link href={`/diagnostic?pest=${service.slug}`} className="mt-24 block">
-                  <Button className="w-full">Demander un diagnostic</Button>
-                </Link>
+                <Button href={`/diagnostic?pest=${service.slug}`} className="mt-24 w-full">Demander un diagnostic</Button>
               </div>
               {service.urgent && (
                 <div className="bg-danger/8 border border-danger/20 rounded-lg p-20">

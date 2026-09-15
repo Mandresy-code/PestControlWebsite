@@ -28,7 +28,7 @@ export default function SectionHead({
       <h2
         id={id}
         className={cn(
-          "text-h2 font-medium tracking-tight max-w-[20ch]",
+          "text-h2 font-medium tracking-tight",
           centered && "mx-auto",
           onDark ? "text-white" : "text-navy-900"
         )}
