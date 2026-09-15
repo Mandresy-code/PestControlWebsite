@@ -74,9 +74,7 @@ export default async function SecteurDetailPage(
             <div className="bg-paper rounded-lg border border-navy-900/8 p-24 shadow-1">
               <h3 className="text-body font-medium text-navy-900 mb-12">Besoin d&apos;un devis ?</h3>
               <p className="text-sm text-navy-600 mb-20">Décrivez votre situation en 2 minutes. Nous revenons vers vous sous 48 h.</p>
-              <Link href="/diagnostic" className="block">
-                <Button className="w-full">Diagnostic en ligne <ArrowRight size={16} strokeWidth={1.5} /></Button>
-              </Link>
+              <Button href="/diagnostic" className="w-full">Diagnostic en ligne <ArrowRight size={16} strokeWidth={1.5} /></Button>
             </div>
           </aside>
         </div>

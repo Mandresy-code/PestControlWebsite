@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
@@ -77,17 +76,13 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
         </p>
 
         <div className="flex flex-wrap gap-16 mb-56">
-          <Link href="/diagnostic">
-            <Button variant="primary" size="lg" onDark>
-              Demander un diagnostic
-              <ArrowRight size={18} strokeWidth={1.5} />
-            </Button>
-          </Link>
-          <Link href="/methode">
-            <Button variant="outline" size="lg" onDark>
-              Notre méthode
-            </Button>
-          </Link>
+          <Button href="/diagnostic" variant="primary" size="lg" onDark>
+            Demander un diagnostic
+            <ArrowRight size={18} strokeWidth={1.5} />
+          </Button>
+          <Button href="/methode" variant="outline" size="lg" onDark>
+            Notre méthode
+          </Button>
         </div>
       </div>
     </section>

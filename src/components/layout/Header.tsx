@@ -105,18 +105,14 @@ export default function Header() {
             <Phone size={16} strokeWidth={1.5} className="text-terra-500 shrink-0" />
             {contact.emergencyPhone}
           </a>
-          <Link href="/diagnostic">
-            <Button variant="outline" size="sm" className="whitespace-nowrap">
-              <span className="lg:hidden">Diagnostic</span>
-              <span className="hidden lg:inline">Demander un diagnostic</span>
-            </Button>
-          </Link>
-          <a href={`tel:${contact.emergencyPhoneHref}`}>
-            <Button size="sm">
-              <Phone size={14} strokeWidth={1.5} />
-              Urgence
-            </Button>
-          </a>
+          <Button href="/diagnostic" variant="outline" size="sm" className="whitespace-nowrap">
+            <span className="lg:hidden">Diagnostic</span>
+            <span className="hidden lg:inline">Demander un diagnostic</span>
+          </Button>
+          <Button href={`tel:${contact.emergencyPhoneHref}`} size="sm">
+            <Phone size={14} strokeWidth={1.5} />
+            Urgence
+          </Button>
         </div>
 
         {/* Burger */}
@@ -158,17 +154,17 @@ export default function Header() {
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
             </Link>
-            <Link href="/diagnostic" className="px-12">
-              <Button variant="outline" size="sm" className="w-full">
+            <div className="px-12">
+              <Button href="/diagnostic" variant="outline" size="sm" className="w-full">
                 Demander un diagnostic
               </Button>
-            </Link>
-            <a href={`tel:${contact.emergencyPhoneHref}`} className="px-12">
-              <Button size="sm" className="w-full">
+            </div>
+            <div className="px-12">
+              <Button href={`tel:${contact.emergencyPhoneHref}`} size="sm" className="w-full">
                 <Phone size={14} strokeWidth={1.5} />
                 Urgence · {contact.emergencyPhone}
               </Button>
-            </a>
+            </div>
           </div>
         </div>
       )}
