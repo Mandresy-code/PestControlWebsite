@@ -29,6 +29,17 @@ export default function Header() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  // Un Link vers la page déjà affichée ne remonte pas le composant : si on est
+  // déjà sur /diagnostic (ex. sur l'écran "Demande reçue"), un simple clic sur
+  // "Demander un diagnostic" ne faisait donc rien. On force un rechargement
+  // complet dans ce cas précis pour repartir sur un formulaire vierge.
+  function handleDiagnosticClick(e: React.MouseEvent) {
+    if (pathname === "/diagnostic") {
+      e.preventDefault();
+      window.location.href = "/diagnostic";
+    }
+  }
+
   // Empêche le scroll de la page derrière le menu mobile ouvert
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -93,7 +104,7 @@ export default function Header() {
             <Phone size={16} strokeWidth={1.5} className="text-terra-500 shrink-0" />
             {contact.emergencyPhone}
           </a>
-          <Link href="/diagnostic">
+          <Link href="/diagnostic" onClick={handleDiagnosticClick}>
             <Button variant="outline" size="sm" className="whitespace-nowrap">
               <span className="lg:hidden">Diagnostic</span>
               <span className="hidden lg:inline">Demander un diagnostic</span>
@@ -146,7 +157,7 @@ export default function Header() {
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
             </Link>
-            <Link href="/diagnostic" className="px-12">
+            <Link href="/diagnostic" className="px-12" onClick={handleDiagnosticClick}>
               <Button variant="outline" size="sm" className="w-full">
                 Demander un diagnostic
               </Button>

@@ -102,6 +102,7 @@ create table if not exists diagnostic_requests (
   etablissement text,
   email        text,
   tel          text,
+  adresse      text,
   cp           text,
   dispo        text,
   precisions   text,

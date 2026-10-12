@@ -1,6 +1,5 @@
 "use client";
-import { useReducer, useEffect, useRef, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useReducer, useEffect, useRef } from "react";
 import { Check, AlertTriangle, ArrowRight, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
@@ -18,12 +17,13 @@ type Step      = 1 | 2 | 3 | 4 | 5;
 interface FormState {
   step:          Step;
   place:         Place;
-  pest:          PestId;
+  pests:         PestId[];
   situation:     Situation;
   nom:           string;
   etablissement: string;
   email:         string;
   tel:           string;
+  adresse:       string;
   cp:            string;
   dispo:         string;
   precisions:    string;
@@ -34,7 +34,7 @@ interface FormState {
 
 type Action =
   | { type: "SET_PLACE";     payload: Place }
-  | { type: "SET_PEST";      payload: PestId }
+  | { type: "TOGGLE_PEST";   payload: PestId }
   | { type: "SET_SITUATION"; payload: Situation }
   | { type: "SET_FIELD";     field: keyof FormState; value: string }
   | { type: "NEXT" }
@@ -42,18 +42,25 @@ type Action =
   | { type: "SUBMITTING" }
   | { type: "SUBMITTED" }
   | { type: "SET_ERRORS";    errors: Record<string, string> }
-  | { type: "PREFILL_PEST";  pest: PestId };
+  | { type: "PREFILL_PEST";  pest: PestId }
+  | { type: "RESET" };
 
 const initial: FormState = {
-  step: 1, place: "", pest: "", situation: "",
-  nom: "", etablissement: "", email: "", tel: "", cp: "", dispo: "", precisions: "",
+  step: 1, place: "", pests: [], situation: "",
+  nom: "", etablissement: "", email: "", tel: "", adresse: "", cp: "", dispo: "", precisions: "",
   submitted: false, submitting: false, errors: {},
 };
 
 function reducer(state: FormState, action: Action): FormState {
   switch (action.type) {
     case "SET_PLACE":     return { ...state, place: action.payload };
-    case "SET_PEST":      return { ...state, pest: action.payload };
+    case "TOGGLE_PEST": {
+      const exists = state.pests.includes(action.payload);
+      return {
+        ...state,
+        pests: exists ? state.pests.filter((p) => p !== action.payload) : [...state.pests, action.payload],
+      };
+    }
     case "SET_SITUATION": return { ...state, situation: action.payload };
     case "SET_FIELD":     return { ...state, [action.field]: action.value };
     case "NEXT":          return { ...state, step: Math.min(state.step + 1, 5) as Step, errors: {} };
@@ -61,7 +68,8 @@ function reducer(state: FormState, action: Action): FormState {
     case "SUBMITTING":    return { ...state, submitting: true };
     case "SUBMITTED":     return { ...state, submitting: false, submitted: true };
     case "SET_ERRORS":    return { ...state, errors: action.errors, submitting: false };
-    case "PREFILL_PEST":  return { ...state, pest: action.pest };
+    case "PREFILL_PEST":  return { ...state, pests: [action.pest] };
+    case "RESET":          return initial;
     default:              return state;
   }
 }
@@ -75,14 +83,16 @@ const situations = wizardSituations;
 // ─── Inner wizard ────────────────────────────────────────────────────────────────
 
 function WizardInner({ pests }: { pests: Pest[] }) {
-  const searchParams = useSearchParams();
   const [state, dispatch] = useReducer(reducer, initial);
   const wizardRef = useRef<HTMLDivElement>(null);
 
+  // Lecture directe de l'URL plutôt que useSearchParams() : évite la
+  // Suspense boundary (et son fallback qui pouvait rester bloqué sur
+  // connexion lente) pour une simple préselection de nuisible.
   useEffect(() => {
-    const pestParam = searchParams.get("pest");
+    const pestParam = new URLSearchParams(window.location.search).get("pest");
     if (pestParam) dispatch({ type: "PREFILL_PEST", pest: pestParam });
-  }, [searchParams]);
+  }, []);
 
   // Le formulaire est long sur mobile : sans ça, l'utilisateur reste scrollé
   // là où était le bouton "Envoyer" et ne voit jamais la confirmation.
@@ -92,8 +102,8 @@ function WizardInner({ pests }: { pests: Pest[] }) {
     }
   }, [state.submitted]);
 
-  const isUrgent = (pestId: string) =>
-    pests.find((p) => p.id === pestId)?.urgent ?? false;
+  const isUrgent = (pestIds: string[]) =>
+    pestIds.some((id) => pests.find((p) => p.id === id)?.urgent);
 
   async function handleSubmit() {
     const errs: Record<string, string> = {};
@@ -120,12 +130,12 @@ function WizardInner({ pests }: { pests: Pest[] }) {
   if (state.submitted) {
     return (
       <div ref={wizardRef} className="scroll-mt-[130px]">
-        <Confirmation state={state} pests={pests} />
+        <Confirmation state={state} pests={pests} onReset={() => dispatch({ type: "RESET" })} />
       </div>
     );
   }
 
-  const urgent = isUrgent(state.pest);
+  const urgent = isUrgent(state.pests);
 
   return (
     <div ref={wizardRef} className="scroll-mt-[130px]">
@@ -159,17 +169,17 @@ function WizardInner({ pests }: { pests: Pest[] }) {
 
       {/* Étape 2 — Nuisible */}
       {state.step === 2 && (
-        <StepCard title="Quel nuisible pensez-vous avoir ?">
+        <StepCard title="Quel(s) nuisible(s) pensez-vous avoir ?" sub="Plusieurs choix possibles.">
           <div className="grid sm:grid-cols-2 gap-12">
             {pests.map((pest) => (
-              <ChoiceButton key={pest.id} label={pest.name}
-                selected={state.pest === pest.id}
-                onClick={() => dispatch({ type: "SET_PEST", payload: pest.id })}
+              <ChoiceButton key={pest.id} label={pest.name} multi
+                selected={state.pests.includes(pest.id)}
+                onClick={() => dispatch({ type: "TOGGLE_PEST", payload: pest.id })}
                 badge={pest.urgent ? "Urgent" : undefined} />
             ))}
           </div>
           <NavRow onPrev={() => dispatch({ type: "PREV" })}
-            onNext={() => dispatch({ type: "NEXT" })} nextDisabled={!state.pest} />
+            onNext={() => dispatch({ type: "NEXT" })} nextDisabled={state.pests.length === 0} />
         </StepCard>
       )}
 
@@ -202,6 +212,8 @@ function WizardInner({ pests }: { pests: Pest[] }) {
               onChange={(e) => dispatch({ type: "SET_FIELD", field: "email", value: e.target.value })} />
             <Field label="Téléphone" type="tel" placeholder="+33 6 00 00 00 00" value={state.tel}
               onChange={(e) => dispatch({ type: "SET_FIELD", field: "tel", value: e.target.value })} />
+            <Field label="Adresse" placeholder="12 rue des Lilas" value={state.adresse}
+              onChange={(e) => dispatch({ type: "SET_FIELD", field: "adresse", value: e.target.value })} />
             <Field label="Code postal" placeholder="75001" value={state.cp}
               onChange={(e) => dispatch({ type: "SET_FIELD", field: "cp", value: e.target.value })} />
             <Field label="Disponibilités" placeholder="Matins en semaine" value={state.dispo}
@@ -224,12 +236,13 @@ function WizardInner({ pests }: { pests: Pest[] }) {
         <StepCard title="Récapitulatif">
           <div className="rounded-md bg-navy-50 p-24 mb-32">
             <RecapRow label="Lieu"       value={wizardPlaces.find((p) => p.id === state.place)?.label ?? state.place} />
-            <RecapRow label="Nuisible"   value={pests.find((p) => p.id === state.pest)?.name ?? state.pest} />
+            <RecapRow label="Nuisible(s)" value={state.pests.map((id) => pests.find((p) => p.id === id)?.name ?? id).join(", ")} />
             <RecapRow label="Situation"  value={situations.find((s) => s.id === state.situation)?.label ?? state.situation} />
             <RecapRow label="Nom"        value={state.nom} />
             {state.etablissement && <RecapRow label="Établissement" value={state.etablissement} />}
             <RecapRow label="Email"      value={state.email} />
             {state.tel   && <RecapRow label="Téléphone"    value={state.tel} />}
+            {state.adresse && <RecapRow label="Adresse"    value={state.adresse} />}
             {state.cp    && <RecapRow label="Code postal"  value={state.cp} />}
             {state.dispo && <RecapRow label="Disponibilités" value={state.dispo} />}
             {state.precisions && <RecapRow label="Précisions" value={state.precisions} />}
@@ -264,17 +277,18 @@ function WizardInner({ pests }: { pests: Pest[] }) {
 
 // ─── Sub-components ───────────────────────────────────────────────────────────────
 
-function StepCard({ title, children }: { title: string; children: React.ReactNode }) {
+function StepCard({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
     <div>
-      <h2 className="text-h3 font-medium text-navy-900 mb-24">{title}</h2>
+      <h2 className={cn("text-h3 font-medium text-navy-900", sub ? "mb-4" : "mb-24")}>{title}</h2>
+      {sub && <p className="text-sm text-navy-500 mb-20">{sub}</p>}
       {children}
     </div>
   );
 }
 
-function ChoiceButton({ label, sub, selected, onClick, badge }: {
-  label: string; sub?: string; selected: boolean; onClick: () => void; badge?: string;
+function ChoiceButton({ label, sub, selected, onClick, badge, multi }: {
+  label: string; sub?: string; selected: boolean; onClick: () => void; badge?: string; multi?: boolean;
 }) {
   return (
     <button onClick={onClick} className={cn(
@@ -291,8 +305,13 @@ function ChoiceButton({ label, sub, selected, onClick, badge }: {
             {badge}
           </span>
         )}
-        <div className={cn("w-5 h-5 rounded-full border-2 transition-colors duration-micro",
-          selected ? "border-navy-900 bg-navy-900" : "border-navy-900/20")} />
+        <div className={cn(
+          "w-5 h-5 shrink-0 border-2 transition-colors duration-micro flex items-center justify-center",
+          multi ? "rounded-[4px]" : "rounded-full",
+          selected ? "border-navy-900 bg-navy-900" : "border-navy-900/20"
+        )}>
+          {multi && selected && <Check size={12} strokeWidth={3} className="text-white" />}
+        </div>
       </div>
     </button>
   );
@@ -324,29 +343,28 @@ function RecapRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function Confirmation({ state, pests }: { state: FormState; pests: Pest[] }) {
-  const urgent = pests.find((p) => p.id === state.pest)?.urgent ?? false;
+function Confirmation({ state, pests, onReset }: { state: FormState; pests: Pest[]; onReset: () => void }) {
+  const urgent = state.pests.some((id) => pests.find((p) => p.id === id)?.urgent);
   return (
     <div className="text-center py-40">
       <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-signal-500/15 mb-24">
         <Check size={32} strokeWidth={1.5} className="text-signal-500" />
       </div>
       <h2 className="text-h2 font-medium text-navy-900 mb-16">Demande reçue.</h2>
-      <p className="text-body-lg text-navy-600 max-w-[48ch] mx-auto leading-relaxed">
+      <p className="text-body-lg text-navy-600 max-w-[48ch] mx-auto leading-relaxed mb-32">
         {urgent
           ? `Votre dossier est marqué urgent. Nous vous rappelons sous 24 h ouvrées au ${state.tel || state.email}.`
           : `Nous vous répondrons sous 48 h ouvrées à l'adresse ${state.email}.`}
       </p>
+      <Button variant="outline" onClick={onReset}>
+        Faire une nouvelle demande
+      </Button>
     </div>
   );
 }
 
-// ─── Export public — Suspense pour useSearchParams ────────────────────────────────
+// ─── Export public ──────────────────────────────────────────────────────────────
 
 export default function DiagnosticWizard({ pests }: { pests: Pest[] }) {
-  return (
-    <Suspense fallback={<div className="h-40 animate-pulse bg-navy-100 rounded-md" />}>
-      <WizardInner pests={pests} />
-    </Suspense>
-  );
+  return <WizardInner pests={pests} />;
 }
