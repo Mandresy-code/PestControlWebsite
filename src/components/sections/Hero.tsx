@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Arc from "@/components/ui/Arc";
@@ -66,8 +65,8 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
       <div className="relative z-20 container-site pb-72 md:pb-96 pt-[152px]">
 
 
-        <h1 className="text-display font-medium text-white tracking-tight max-w-[18ch] mb-24">
-          Votre tranquillité,<br />notre expertise.
+        <h1 className="text-display font-medium text-white tracking-tight max-w-[26ch] mb-24">
+          Votre tranquillité, notre expertise.
         </h1>
 
         <p className="text-body-lg text-navy-200 max-w-[52ch] leading-relaxed mb-40">
@@ -77,17 +76,13 @@ export default function Hero({ videoMp4, videoWebm }: HeroProps) {
         </p>
 
         <div className="flex flex-wrap gap-16 mb-56">
-          <Link href="/diagnostic">
-            <Button variant="primary" size="lg" onDark>
-              Demander un diagnostic
-              <ArrowRight size={18} strokeWidth={1.5} />
-            </Button>
-          </Link>
-          <Link href="/methode">
-            <Button variant="outline" size="lg" onDark>
-              Notre méthode
-            </Button>
-          </Link>
+          <Button href="/diagnostic" variant="primary" size="lg" onDark>
+            Demander un diagnostic
+            <ArrowRight size={18} strokeWidth={1.5} />
+          </Button>
+          <Button href="/methode" variant="outline" size="lg" onDark>
+            Notre méthode
+          </Button>
         </div>
       </div>
     </section>

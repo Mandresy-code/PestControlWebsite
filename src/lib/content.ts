@@ -511,6 +511,8 @@ export const wizardPlaces = [
   { id: "maison",      label: "Maison / appartement", icon: "Home" },
   { id: "restaurant",  label: "Restaurant / cuisine", icon: "UtensilsCrossed" },
   { id: "hotel",       label: "Hôtel",                icon: "Hotel" },
+  { id: "bureau",      label: "Bureaux / tertiaire",  icon: "Briefcase" },
+  { id: "commerce",    label: "Commerce",             icon: "Store" },
   { id: "industrie",   label: "Site industriel",      icon: "Factory" },
   { id: "sante",       label: "Établissement de santé", icon: "HeartPulse" },
   { id: "autre",       label: "Autre",                 icon: "Building2" },

@@ -87,7 +87,7 @@ export default function EspaceClientPage() {
             Groupe BCR-i
           </p>
           <h2 className="text-h2 font-medium text-white mb-24">
-            Vos interventions,<br />en temps réel.
+            Vos interventions, en temps réel.
           </h2>
           <p className="text-body-lg text-navy-200 leading-relaxed mb-40">
             Rapports d&apos;intervention détaillés, plannings de passage, traçabilité

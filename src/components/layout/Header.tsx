@@ -40,10 +40,22 @@ export default function Header() {
     }
   }
 
-  // Empêche le scroll de la page derrière le menu mobile ouvert
+  // Empêche le scroll de la page derrière le menu mobile ouvert.
+  // `overflow: hidden` seul ne bloque pas le scroll sur iOS Safari — il faut
+  // figer le body en position fixed et restaurer la position au relâchement.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!open) return;
+    const scrollY = window.scrollY;
+    const { body } = document;
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    return () => {
+      body.style.position = "";
+      body.style.top = "";
+      body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
   }, [open]);
 
   return (
@@ -104,18 +116,14 @@ export default function Header() {
             <Phone size={16} strokeWidth={1.5} className="text-terra-500 shrink-0" />
             {contact.emergencyPhone}
           </a>
-          <Link href="/diagnostic" onClick={handleDiagnosticClick}>
-            <Button variant="outline" size="sm" className="whitespace-nowrap">
-              <span className="lg:hidden">Diagnostic</span>
-              <span className="hidden lg:inline">Demander un diagnostic</span>
-            </Button>
-          </Link>
-          <a href={`tel:${contact.emergencyPhoneHref}`}>
-            <Button size="sm">
-              <Phone size={14} strokeWidth={1.5} />
-              Urgence
-            </Button>
-          </a>
+          <Button href="/diagnostic" onClick={handleDiagnosticClick} variant="outline" size="sm" className="whitespace-nowrap">
+            <span className="lg:hidden">Diagnostic</span>
+            <span className="hidden lg:inline">Demander un diagnostic</span>
+          </Button>
+          <Button href={`tel:${contact.emergencyPhoneHref}`} size="sm">
+            <Phone size={14} strokeWidth={1.5} />
+            Urgence
+          </Button>
         </div>
 
         {/* Burger */}
@@ -157,17 +165,17 @@ export default function Header() {
             <Link href="/espace-client" className="text-body text-navy-600 px-12 py-8">
               Espace client
             </Link>
-            <Link href="/diagnostic" className="px-12" onClick={handleDiagnosticClick}>
-              <Button variant="outline" size="sm" className="w-full">
+            <div className="px-12">
+              <Button href="/diagnostic" onClick={handleDiagnosticClick} variant="outline" size="sm" className="w-full">
                 Demander un diagnostic
               </Button>
-            </Link>
-            <a href={`tel:${contact.emergencyPhoneHref}`} className="px-12">
-              <Button size="sm" className="w-full">
+            </div>
+            <div className="px-12">
+              <Button href={`tel:${contact.emergencyPhoneHref}`} size="sm" className="w-full">
                 <Phone size={14} strokeWidth={1.5} />
                 Urgence · {contact.emergencyPhone}
               </Button>
-            </a>
+            </div>
           </div>
         </div>
       )}

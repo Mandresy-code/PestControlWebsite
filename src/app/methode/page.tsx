@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Search, ClipboardList, Wrench, BarChart3 } from "lucide-react";
 import SectionHead from "@/components/ui/SectionHead";
 import FinalCTA from "@/components/sections/FinalCTA";
-import ProofsStats from "@/components/sections/ProofsStats";
-import { getMethodSteps, getStats, getProofs } from "@/lib/db";
+import { getMethodSteps } from "@/lib/db";
 import { certifications } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -16,16 +15,14 @@ const iconMap: Record<string, React.ComponentType<{ size?: number; strokeWidth?:
 };
 
 export default async function MethodePage() {
-  const [methodSteps, stats, proofs] = await Promise.all([
-    getMethodSteps(), getStats(), getProofs(),
-  ]);
+  const methodSteps = await getMethodSteps();
 
   return (
     <>
       <div className="bg-navy-900 pt-[152px] pb-72">
         <div className="container-site">
           <p className="font-mono text-eyebrow uppercase tracking-widest text-signal-400 mb-16">Méthode</p>
-          <h1 className="text-h1 font-medium text-white tracking-tight mb-20 max-w-[20ch]">
+          <h1 className="text-h1 font-medium text-white tracking-tight mb-20">
             IPM : la lutte qui comprend avant d&apos;agir.
           </h1>
           <p className="text-body-lg text-navy-200 max-w-[58ch] leading-relaxed">
@@ -67,8 +64,6 @@ export default async function MethodePage() {
           </div>
         </div>
       </section>
-
-      <ProofsStats proofs={proofs} stats={stats} />
 
       <section className="bg-cream section-padding">
         <div className="container-site">
