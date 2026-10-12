@@ -29,6 +29,17 @@ export default function Header() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  // Un Link vers la page déjà affichée ne remonte pas le composant : si on est
+  // déjà sur /diagnostic (ex. sur l'écran "Demande reçue"), un simple clic sur
+  // "Demander un diagnostic" ne faisait donc rien. On force un rechargement
+  // complet dans ce cas précis pour repartir sur un formulaire vierge.
+  function handleDiagnosticClick(e: React.MouseEvent) {
+    if (pathname === "/diagnostic") {
+      e.preventDefault();
+      window.location.href = "/diagnostic";
+    }
+  }
+
   // Empêche le scroll de la page derrière le menu mobile ouvert.
   // `overflow: hidden` seul ne bloque pas le scroll sur iOS Safari — il faut
   // figer le body en position fixed et restaurer la position au relâchement.
@@ -105,7 +116,7 @@ export default function Header() {
             <Phone size={16} strokeWidth={1.5} className="text-terra-500 shrink-0" />
             {contact.emergencyPhone}
           </a>
-          <Button href="/diagnostic" variant="outline" size="sm" className="whitespace-nowrap">
+          <Button href="/diagnostic" onClick={handleDiagnosticClick} variant="outline" size="sm" className="whitespace-nowrap">
             <span className="lg:hidden">Diagnostic</span>
             <span className="hidden lg:inline">Demander un diagnostic</span>
           </Button>
@@ -155,7 +166,7 @@ export default function Header() {
               Espace client
             </Link>
             <div className="px-12">
-              <Button href="/diagnostic" variant="outline" size="sm" className="w-full">
+              <Button href="/diagnostic" onClick={handleDiagnosticClick} variant="outline" size="sm" className="w-full">
                 Demander un diagnostic
               </Button>
             </div>

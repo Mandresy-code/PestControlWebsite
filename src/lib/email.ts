@@ -93,18 +93,19 @@ function wrapEmail(title: string, urgent: boolean, bodyRows: string) {
 export function diagnosticEmailHtml(data: {
   urgent: boolean; place: string; pest: string; situation: string;
   nom: string; etablissement?: string | null; email: string; tel?: string | null;
-  cp?: string | null; dispo?: string | null; precisions?: string | null;
+  adresse?: string | null; cp?: string | null; dispo?: string | null; precisions?: string | null;
 }) {
   const type = data.etablissement ? "B2B — établissement" : "B2C — particulier";
   const bodyRows = [
     row("Type de demande", type),
     row("Lieu", data.place),
-    row("Nuisible", data.pest),
+    row("Nuisible(s)", data.pest),
     row("Situation", data.situation),
     row("Nom", data.nom),
     row("Établissement", data.etablissement),
     row("Email", data.email),
     row("Téléphone", data.tel),
+    row("Adresse", data.adresse),
     row("Code postal", data.cp),
     row("Disponibilités", data.dispo),
     row("Précisions", data.precisions),
