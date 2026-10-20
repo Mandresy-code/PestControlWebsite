@@ -547,7 +547,7 @@ export const wizardSigns: Record<string, { id: string; label: string; pestId: st
 
 export const contact = {
   // Domaine du site (eseis-pestcontrol.fr) ≠ domaine email (eseis.fr).
-  email: "cockpitgrdf@eseis.fr",
+  email: "pilotage.eseis.pestcontrol@gmail.com",
   phone: "+33 1 XX XX XX XX", // fixe général — non communiqué, hors périmètre urgence
   address: "29 Bd du Général Delambre, 95870 Bezons",
   zones: ["Île-de-France", "Grand Est", "Auvergne-Rhône-Alpes", "Nouvelle-Aquitaine"],
