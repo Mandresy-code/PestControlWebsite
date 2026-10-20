@@ -37,7 +37,7 @@ const jsonLd = {
 };
 
 export const metadata: Metadata = {
-  title: "ESEIS Pest Control — L'excellence en matière de nuisibles.",
+  title: "ESEIS Pest Control - L'excellence en matière de nuisibles.",
   description:
     "Lutte antiparasitaire professionnelle pour entreprises et particuliers. Dératisation, désinsectisation, punaises de lit, désinfection. Certibiocide. Urgences 24h/24.",
 };
