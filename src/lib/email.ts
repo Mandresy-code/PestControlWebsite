@@ -7,7 +7,7 @@ const EMAIL_FROM      = process.env.EMAIL_FROM ?? "ESEIS Pest Control <onboardin
 
 // Adresses qui reçoivent chaque demande (diagnostic + contact).
 // Configurable via Netlify sans redéploiement de code : liste séparée par des virgules.
-const DEFAULT_RECIPIENTS = ["cockpitgrdf@eseis.fr", "mandresy.rasolonjatovo@eseis.fr"];
+const DEFAULT_RECIPIENTS = ["pilotage.eseis.pestcontrol@gmail.com"];
 const REQUEST_RECIPIENTS = (process.env.REQUEST_NOTIFICATION_EMAILS ?? DEFAULT_RECIPIENTS.join(","))
   .split(",")
   .map((e) => e.trim())
