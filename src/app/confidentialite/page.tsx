@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { contact } from "@/lib/content";
+import EmailText from "@/components/ui/EmailText";
 
 export const metadata: Metadata = {
   title: "Politique de confidentialité — ESEIS Pest Control",
@@ -55,9 +56,9 @@ export default function ConfidentialitePage() {
               Pour exercer ces droits, contactez-nous à{" "}
               <a
                 href={`mailto:${contact.email}`}
-                className="text-navy-900 underline underline-offset-2 hover:text-navy-700 transition-colors duration-micro"
+                className="text-navy-900 underline underline-offset-2 hover:text-navy-700 transition-colors duration-micro [overflow-wrap:anywhere]"
               >
-                {contact.email}
+                <EmailText email={contact.email} />
               </a>
               .
             </p>
