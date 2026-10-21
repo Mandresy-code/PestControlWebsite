@@ -4,6 +4,7 @@ import { Mail, MapPin, Clock, Phone, Paperclip, X, ArrowRight } from "lucide-rea
 import Button from "@/components/ui/Button";
 import { Field, TextareaField } from "@/components/ui/Field";
 import { contact } from "@/lib/content";
+import EmailText from "@/components/ui/EmailText";
 
 const MAX_PHOTO_BYTES = 5 * 1024 * 1024; // 5 Mo
 
@@ -195,10 +196,10 @@ export default function ContactPage() {
             <div className="flex flex-col gap-20">
               <div className="flex items-start gap-16">
                 <Mail size={18} strokeWidth={1.5} className="text-signal-500 shrink-0 mt-1" />
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm text-navy-400 mb-4">Email</p>
-                  <a href={`mailto:${contact.email}`} className="text-body font-medium text-navy-900 hover:text-navy-700 transition-colors duration-micro">
-                    {contact.email}
+                  <a href={`mailto:${contact.email}`} className="text-body font-medium text-navy-900 hover:text-navy-700 transition-colors duration-micro [overflow-wrap:anywhere]">
+                    <EmailText email={contact.email} />
                   </a>
                 </div>
               </div>
